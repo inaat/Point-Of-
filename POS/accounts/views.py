@@ -27,14 +27,15 @@ def organization(request):
         accountnature=request.POST.get("accountnature")
         type_accountnautre=request.POST.get("type_accountnautre")
         status= request.POST.get("status")
-        subsccount=request.POST.get("subsccount")
+        subsccount=request.POST.get("Subsccounts")
         project_T= request.POST.get("Project_T")
         branch_T= request.POST.get("Branch_T")
         trade_T=request.POST.get("Trade_T")
         book_T=request.POST.get("Book_T")
       
-
-        print(accountid,titleofaccount,accountnature,type_accountnautre,status,subsccount)
+        c = subsccount.count('')
+      
+        
         
         if project_T is not None and  branch_T is not None and book_T is not None:
             pString , pCode= project_T.split('::')
@@ -44,22 +45,28 @@ def organization(request):
             
         
             userid='789'
-            
-            if subsccount is not None:
-                subccoun= subsccount[-6:]
-                cursor.execute("CALL `accounts`.`AddAccount`(@RetMess,'{}','{}','{}','{}','{}','{}','{}','{}','{}','{}','{}')".format(trade_T,pCode,bCode,userid,bkCode,accoun,titleofaccount,accountnature,type_accountnautre,status,subccoun))
-                cursor.execute("SELECT @RetMess")
-                message=None
+            message=None
+            if subsccount == '' :
+                
+                print("is not None")
+                cursor.execute("CALL `accounts`.`AddAccount`(@ReturnMessage,'{}','{}','{}','{}','{}','{}','{}','{}','{}','{}',null)".format(trade_T,pCode,bCode,userid,bkCode,accoun,titleofaccount,accountnature,type_accountnautre,status))
+                cursor.execute("SELECT @ReturnMessage")
+                
                 for retu in cursor.fetchone():
                     message=retu
+                print(message)
                 return JsonResponse({"message":message,"success":True},status=200)
                 
             else:
-                cursor.execute("CALL `accounts`.`AddAccount`(@ReturnMessage,'{}','{}','{}','{}','{}','{}','{}','{}','{}','{}',null)".format(trade_T,pCode,bCode,userid,bkCode,accoun,titleofaccount,accountnature,type_accountnautre,status))
-                cursor.execute("SELECT @ReturnMessage")
+                print("INAyat")
+                subccoun= subsccount[-6:]
+                cursor.execute("CALL `accounts`.`AddAccount`(@RetMess,'{}','{}','{}','{}','{}','{}','{}','{}','{}','{}','{}')".format(trade_T,pCode,bCode,userid,bkCode,accoun,titleofaccount,accountnature,type_accountnautre,status,subccoun))
+                cursor.execute("SELECT @RetMess")
+                
                 for retu in cursor.fetchone():
                     message=retu
-                    print(retu)
+                    
+                print(message)
             return JsonResponse({"message":message,"success":True}, status=200)
         return JsonResponse({"success":False}, status=400)    
     
@@ -136,10 +143,30 @@ def organization(request):
     return render(request , 'organization/organization.html', context )
 
 def Product_Info(request):
+    cursor = connections["form1_db"].cursor()
+    Trade=[]
+    Trade_Value=[]
+    cursor.execute("CALL `accounts`.`Trade_Code_`()")
+    for trade in cursor.fetchall():
+        Trade.append(trade)
+    
+       
+    cursor.execute("select `trades`.`Trade_Code` from trades;")
+    for trade in cursor.fetchall():
+        Trade_Value.append(trade) 
 
 
+    context = {
+       
+        'Trade':Trade,
+        'Trade_Value':Trade_Value,
+      
+        
+        
+    }
 
-    return render(request , 'organization/Product_Info.html')
+
+    return render(request , 'organization/Product_Info.html', context)
 
 
 
@@ -166,9 +193,33 @@ def AccoundFind(request):
                 Account_Find.append(result)
             
             
-            
+            AcString = None 
+            ACCID = None
             return JsonResponse({"Account_Find":Account_Find,"success":True}, status=200)
     return JsonResponse({"success":False}, status=400)
 
 
+
+
+def ProjectCodeFind(request):
+    
+   
+    if request.method == "GET" and request.is_ajax():
+        cursor = connections["form1_db"].cursor()
+        Trade_T= request.GET.get("Trade_T")
+        Project_T= request.GET.get("Project_T")
+        Project=[]
+        Branch=[]
         
+        
+        cursor.execute("CALL `accounts`.`Project_Code_`('{}' )".format(Trade_T))
+        for project in cursor.fetchall():
+            Project.append(project) 
+        if Project_T is not None:
+            PString , PCode= Project_T.split('::')
+            cursor.execute("CALL `accounts`.`Branches_Code_`('{}' )".format(PCode))
+            for project in cursor.fetchall():
+                Branch.append(project)  
+        return JsonResponse({"Project":Project,"Branch":Branch,"success":True}, status=200)
+    return JsonResponse({"success":False}, status=400)
+

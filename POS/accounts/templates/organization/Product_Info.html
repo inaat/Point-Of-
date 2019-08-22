@@ -4,15 +4,23 @@
 
 
 {% block style %}
-    <style>
+<style>
     .form-group {
-  margin: 0;
-  
-}
+        margin: 0;
 
-    </style>
+    }
+
+    .prodImg {
+        max-width: 180px;
+        height: 180px;
+    }
+
+    input[type=file] {
+        width: 50%px;
+    }
+</style>
 {% endblock style %}
-    
+
 {% block content %}
 
 <!-- Top Bar -->
@@ -221,7 +229,7 @@
             <h2>FORM EXAMPLES</h2>
         </div>
 
-   
+
         <!-- Multi Column -->
         <div class="row clearfix">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -230,201 +238,218 @@
                         <h2>
                             MULTI COLUMN
                         </h2>
-                       
+
                     </div>
                     <div class="body">
-                        <div class="row clearfix">
+                        <form id="myForm">
                             <div class="row clearfix">
-                                <div class="col-md-2">
-                                    <div class="form-group">
-                                        <div class="form-line">
-                                            <label for="">image</label>
-                                            <input type="text" class="form-control" placeholder="col-md-2">
+                                <div class="row clearfix">
+                                    <div class="col-md-5">
+
+                                        <div class="form-group form-inline padding-0">
+                                            <label for="exampleInputEmail1">Product's ID</label>
+
+                                            <input type="text" style="width:250px" class="form-control" name="ProductID"
+                                                id="ProductC" placeholder="Product ID">
+                                            <i class="glyphicon glyphicon-chevron-left btn btn-secondary"></i>
+                                            <i class="glyphicon glyphicon-chevron-right btn btn-secondary"></i>
+                                            <i class="glyphicon glyphicon-ok btn btn-secondary"></i>
+
+                                        </div>
+
+
+                                    </div>
+                                    <div class="col-md-7 padding-0">
+
+                                        <div class=" form-group form-line">
+                                            <label for="">Category</label>
+                                            <select style="width:100px" required name="type_accountnautre" id="slct2">
+
+                                                <option selected disabled>Choose</option>
+
+                                            </select>
+                                            <label for="">Type</label>
+                                            <select style="width:100px" required name="type_accountnautre" id="slct2">
+
+                                                <option selected disabled>Choose</option>
+
+                                            </select>
+                                            <label for="">Valuation</label>
+                                            <select style="width:60px" required name="type_accountnautre" id="slct2">
+
+                                                <option selected disabled>Choose</option>
+
+                                            </select>
+                                            <label for="">Scheme</label>
+                                            <select style="width:90px" required name="type_accountnautre" id="slct2">
+
+                                                <option selected disabled>Choose</option>
+
+                                            </select>
+                                            <label for="">Active</label>
+                                            <select style="width:50px" required name="type_accountnautre" id="slct2">
+
+                                                <option selected disabled>Choose</option>
+
+                                            </select>
+                                        </div>
+
+                                    </div>
+
+
+                                </div>
+                            </div>
+                            <!-- image -->
+                            <div class="row clearfix ">
+                                <div class="row clearfix">
+                                    <div class="col-md-10">
+                                        <div class="form-group form-inline padding-0">
+                                            <label for="exampleInputEmail1">Product Title</label>
+
+                                            <input type="text" style="width:150px" class="form-control" name="Product"
+                                                id="ProductC" placeholder="Product Title">
+                                            <i class=" btn btn-secondary">Add</i>
+                                            <i class=" btn btn-secondary">Del</i>
+
+                                            <label for="">O/I Unit</label>
+                                            <input class="form-control" style="width:40px" type="text">
+                                            <label for="">/</label>
+                                            <input class="form-control" style="width:40px" type="text">
+
+                                            <label for="">Packing</label>
+                                            <input class="form-control" style="width:80px" type="text">
+                                            <label for="">Sal.Disc.%</label>
+                                            <input class="form-control" style="width:40px" type="text">
+                                            <label for="">Pur.Disc.%</label>
+                                            <input class="form-control" style="width:40px" type="text">
+                                            <label for="">Comm.%</label>
+                                            <input class="form-control" style="width:40px" type="text">
+
+
+
+
+                                        </div>
+                                        <div class="form-group form-inline padding-0" style="margin-top:20px;">
+
+
+                                            <label for="">Trade Price</label>
+                                            <input class="form-control" style="width:60px" type="text">
+                                            <label for="">PR.%</label>
+                                            <input class="form-control" style="width:40px" type="text">
+
+                                            <label for="">Sal Price</label>
+                                            <input class="form-control" style="width:60px" type="text">
+                                            <label for="">DST Price</label>
+                                            <input class="form-control" style="width:40px" type="text">
+                                            <label for="">WS Price</label>
+                                            <input class="form-control" style="width:40px" type="text">
+                                            <label for="">Company</label>
+                                            <input class="form-control" style="width:140px" type="text"
+                                                placeholder="Company">
+                                            <label for="">Vendor</label>
+                                            <input class="form-control" style="width:140px" type="text"
+                                                placeholder="Vendor">
+
+
+
+
+                                        </div>
+
+
+                                        <div class="form-group form-inline padding-0" style="margin-top:20px; ">
+                                            <label for="exampleInputEmail1">Old Price</label>
+                                            <input type="text" style="width:150px" class="form-control" name="oldprice"
+                                                id="oldprice" placeholder="Old Price">
+                                            <label for="exampleInputEmail1">R.O.Level</label>
+                                            <input type="text" style="width:140px" class="form-control" name="R.O.Level"
+                                                id="R.O.Level" placeholder="R.O.Level">
+                                            <label for="exampleInputEmail1">Outer In Of</label>
+                                            <input type="text" style="width:140px" class="form-control" name="oldprice"
+                                                id="oldprice" placeholder="Outer In Of">
+                                            <label for="exampleInputEmail1">Inner Of</label>
+                                            <input type="text" style="width:100px" class="form-control" name="oldprice"
+                                                id="oldprice" placeholder="Inner Of">
+                                            <label for="exampleInputEmail1">Shelf</label>
+                                            <input type="text" style="width:100px" class="form-control" name="oldprice"
+                                                id="oldprice" placeholder="Shelf">
+
+
+
+
+                                        </div>
+                                        <div class="form-group form-inline padding-0" style="margin-top:20px; ">
+                                            <label for="exampleInputEmail1">Inventory A/C</label>
+                                            <input type="text" style="width:230px" class="form-control" name="oldprice"
+                                                id="oldprice" placeholder="Inventory A/C">
+                                            <label for="exampleInputEmail1">Sale A/C</label>
+                                            <input type="text" style="width:240px" class="form-control" name="R.O.Level"
+                                                id="R.O.Level" placeholder="Sale A/C">
+                                            <label for="exampleInputEmail1">COGS A/C</label>
+                                            <input type="text" style="width:240px" class="form-control" name="oldprice"
+                                                id="oldprice" placeholder="COGS A/C">
+
+
+
+
+
                                         </div>
                                     </div>
-                                </div>
-                                <div class="col-md-2">
-                                    <div class="form-group">
-                                        <div class="form-line">
-                                            <input type="text" class="form-control" placeholder="col-md-2">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-2">
-                                    <div class="form-group">
-                                        <div class="form-line">
-                                            <input type="text" class="form-control" placeholder="col-md-2">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-2">
-                                    <div class="form-group">
-                                        <div class="form-line">
-                                            <input type="text" class="form-control" placeholder="col-md-2">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-2">
-                                    <div class="form-group">
-                                        <div class="form-line">
-                                            <input type="text" class="form-control" placeholder="col-md-2">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-2">
-                                    <div class="form-group">
-                                        <div class="form-line">
-                                            <input type="text" class="form-control" placeholder="col-md-2">
-                                        </div>
+                                    <div class="col-md-2 padding-0">
+                                        <img id="blah" class="prodImg" src="http://placehold.it/180" alt="your image" />
+                                        <input type='file' onchange="readURL(this);" />
                                     </div>
                                 </div>
                             </div>
-                        </div>
 
-                        <div class="row clearfix ">
                             <div class="row clearfix">
-                                <div class="col-md-2">
-                                    <div class="form-group">
-                                        <div class="form-line">
-                                            <label for="">product</label>
-                                            <input type="text" class="form-control" placeholder="col-md-2">
+                                <div class="row clearfix">
+                                    <div class="col-md-9">
+                                        <div class="form-group form-inline">
+                                            <label for="my-input">Trade Code</label>
+                                            <select class="form-control" name="Trade_T" id="trade_t">
+
+                                                <option selected disabled>Choose</option>
+
+                                                {% for Trade in Trade %}
+
+
+                                                {% for Trade_Value in Trade_Value %}
+                                                <option
+                                                    value="{{Trade_Value|cut:"(" |cut:"Decimal" |cut:")" |cut:","|cut:"'"}}">
+                                                    {{Trade|cut:"(" |cut:")" |cut:","|cut:"'"}}</option>
+
+                                                {% endfor %}
+
+
+
+                                                {% endfor %}
+                                            </select> <label for="my-input">Project Code</label>
+                                            <select class="form-control" name="Project_T" id="project_t">
+                                                <option selected disabled> Choose</option>
+
+                                            </select>
+                                            <label for="my-input">Branch Code</label>
+                                            <select class="form-control" id="branch_t" name="Branch_T">
+                                                <option selected disabled>Choose</option>
+
+                                            </select>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="col-md-2">
-                                    <div class="form-group">
-                                        <div class="form-line">
-                                            <input type="text" class="form-control" placeholder="col-md-2">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-2">
-                                    <div class="form-group">
-                                        <div class="form-line">
-                                            <input type="text" class="form-control" placeholder="col-md-2">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-2">
-                                    <div class="form-group">
-                                        <div class="form-line">
-                                            <input type="text" class="form-control" placeholder="col-md-2">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-2">
-                                    <div class="form-group">
-                                        <div class="form-line">
-                                            <input type="text" class="form-control" placeholder="col-md-2">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-2">
-                                    <div class="form-group">
-                                        <div class="form-line">
-                                            <input type="text" class="form-control" placeholder="col-md-2">
-                                        </div>
+                                    <div class="col-md-4">
+
                                     </div>
                                 </div>
                             </div>
-                        </div>
 
-                        <div class="row clearfix">
                             <div class="row clearfix">
-                                <div class="col-md-2">
-                                    <div class="form-group">
-                                        <div class="form-line">
-                                            <input type="text" class="form-control" placeholder="col-md-2">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-2">
-                                    <div class="form-group">
-                                        <div class="form-line">
-                                            <input type="text" class="form-control" placeholder="col-md-2">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-2">
-                                    <div class="form-group">
-                                        <div class="form-line">
-                                            <input type="text" class="form-control" placeholder="col-md-2">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-2">
-                                    <div class="form-group">
-                                        <div class="form-line">
-                                            <input type="text" class="form-control" placeholder="col-md-2">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-2">
-                                    <div class="form-group">
-                                        <div class="form-line">
-                                            <input type="text" class="form-control" placeholder="col-md-2">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-2">
-                                    <div class="form-group">
-                                        <div class="form-line">
-                                            <input type="text" class="form-control" placeholder="col-md-2">
-                                        </div>
-                                    </div>
+                                <div class="row clearfix">
+
                                 </div>
                             </div>
-                        </div>
 
-                        <div class="row clearfix">
-                            <div class="row clearfix">
-                                <div class="col-md-2">
-                                    <div class="form-group">
-                                        <div class="form-line">
-                                            <input type="text" class="form-control" placeholder="col-md-2">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-2">
-                                    <div class="form-group">
-                                        <div class="form-line">
-                                            <input type="text" class="form-control" placeholder="col-md-2">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-2">
-                                    <div class="form-group">
-                                        <div class="form-line">
-                                            <input type="text" class="form-control" placeholder="col-md-2">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-2">
-                                    <div class="form-group">
-                                        <div class="form-line">
-                                            <input type="text" class="form-control" placeholder="col-md-2">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-2">
-                                    <div class="form-group">
-                                        <div class="form-line">
-                                            <input type="text" class="form-control" placeholder="col-md-2">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-2">
-                                    <div class="form-group">
-                                        <div class="form-line">
-                                            <input type="text" class="form-control" placeholder="col-md-2">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
 
-                        
                     </div>
+                    </form>
                 </div>
             </div>
         </div>
@@ -437,5 +462,72 @@
 {% endblock content %}
 {% block script %}
 
+<script>
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
 
+            reader.onload = function (e) {
+                $('#blah')
+                    .attr('src', e.target.result);
+            };
+
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+    $(document).ready(function () {
+        $("#trade_t").change(function (e) {
+            e.preventDefault();
+            let formData = $('#myForm').serialize();
+
+            $.ajax({
+                type: 'GET',
+                url: "{% url 'accounts:ProjectCodeFind' %}",
+                data: formData,
+                success: function (response) {
+                    console.log(Response.Project);
+                    $select = $('#project_t');
+                    fLen = response.Project.length;
+                    for (i = 0; i < fLen; i++) {
+                        // console.log(response.Project[i]);
+                        $select.append('<option value="' + response.Project[i] + '">' + response.Project[i] + '</option>');
+
+                    }
+                },
+                error: function (response) {
+                    console.log(response);
+                }
+            })
+        });
+        $("#project_t").change(function (e) {
+            e.preventDefault();
+            let formData = $('#myForm').serialize();
+
+            $.ajax({
+                type: 'GET',
+                url: "{% url 'accounts:ProjectCodeFind' %}",
+                data: formData,
+                success: function (response) {
+
+                    $select = $('#branch_t');
+                    fLen = response.Project.length;
+                    for (i = 0; i < fLen; i++) {
+
+                        $select.append('<option selected value="' + response.Branch[i] + '">' + response.Branch[i] + '</option>');
+
+                    }
+
+
+
+
+
+                },
+                error: function (response) {
+                    alert(response)
+                }
+            })
+        });
+
+    })
+</script>
 {% endblock script %}

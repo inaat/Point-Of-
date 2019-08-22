@@ -230,12 +230,11 @@
                         <div class="form-group">
                           <label style="text-align: center" for="" class="col-sm-3 control-label">Account's ID </label>
                           <div class="col-sm-9">
-                            <select required class="form-control js-example-tags" id="account" name="Accounts">
-
-                              <option selected disabled>Choose or new Add Account</option>
-
-
-                            </select>
+                              <input type="text" class="form-control" id="account" name="Accounts"list="account_List"placeholder="Choose or new Add Account">
+                              <datalist id="account_List">
+                                
+                                </datalist>
+                            
 
                           </div>
                         </div>
@@ -317,11 +316,11 @@
                         <div class="form-group">
                           <label style="text-align: center" for="" class="col-sm-3 control-label">Sub Account Of</label>
                           <div class="col-sm-9">
-                            <select class="form-control js-example-tags" id="subsccount" name="subsccount">
-                              <option selected disabled>Choose or Add SubAccount</option>
-
-
-                            </select>
+                              <input type="text" class="form-control" id="subsccount"name="Subsccounts"list="account_List"placeholder="Choose or Add SubAccount">
+                              <datalist id="account_List">
+                                
+                                </datalist>
+                           
                           </div>
                         </div>
 
@@ -607,7 +606,7 @@
         success: function (response) {
 
 
-          $select = $("#account");
+          $select = $("#account_List");
 
 
           if (typeof response.Account_ids !== 'undefined' && response.Account_ids.length > 0) {
@@ -615,10 +614,10 @@
             for (i = 0; i < fLen; i++) {
 
 
-              $select.append('<option  value="' + response.Account_ids[i] + '">' + response.Account_ids[i] + '</option>');
+              $select.append('<option > ' + response.Account_ids[i] + '</option>');
 
               $subsccount = $("#subsccount")
-              $subsccount.append('<option  value="' + response.Account_ids[i] + '">' + response.Account_ids[i] + '</option>');
+              $subsccount.append('<option >' + response.Account_ids[i] + '</option>');
 
 
 
