@@ -1,0 +1,161 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <title>Welcome To | Bootstrap Based Admin Template - Material Design</title>
+
+    <!-- Favicon-->
+    <link rel="icon" href="favicon.ico" type="{% static 'accounts/image/x-icon'%}">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet"
+        type="text/css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type="text/css">
+
+    <!-- live serarch box with dropdown -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.8/css/select2.min.css" rel="stylesheet" />
+
+    <!-- Bootstrap Core Css -->
+    <link href="{% static 'accounts/plugins/bootstrap/css/bootstrap.css ' %}" rel="stylesheet">
+
+    <!-- Waves Effect Css -->
+    <link href="{% static 'accounts/plugins/node-waves/waves.css'%}" rel="stylesheet" />
+
+    <!-- Animation Css -->
+    <link href="{% static 'accounts/plugins/animate-css/animate.css'%}" rel="stylesheet" />
+
+    <!-- Morris Chart Css-->
+    <link href="{% static 'accounts/plugins/morrisjs/morris.css'%}" rel="stylesheet" />
+
+    <!-- Custom Css -->
+    <link href="{% static 'accounts/css/style.css'%}" rel="stylesheet">
+    {% block style %}
+    {% endblock style %}
+
+    <!-- AdminBSB Themes. You can choose a theme from css/themes instead of get all themes -->
+    <link href="{% static 'accounts/css/themes/all-themes.css '%}" rel="stylesheet" />
+</head>
+
+<body class="theme-red">
+    <!-- Page Loader -->
+    <div class="page-loader-wrapper">
+        <div class="loader">
+            <div class="preloader">
+                <div class="spinner-layer pl-red">
+                    <div class="circle-clipper left">
+                        <div class="circle"></div>
+                    </div>
+                    <div class="circle-clipper right">
+                        <div class="circle"></div>
+                    </div>
+                </div>
+            </div>
+            <p>Please wait...</p>
+        </div>
+    </div>
+    <!-- #END# Page Loader -->
+    <!-- Overlay For Sidebars -->
+    <div class="overlay"></div>
+    <!-- #END# Overlay For Sidebars -->
+
+
+    {% block content %}
+
+    {% endblock content %}
+
+    <!-- Jquery Core Js -->
+    <script src="{% static 'accounts/plugins/jquery/jquery.min.js' %}"></script>
+
+    <!-- live serarch box with dropdown -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.8/js/select2.min.js"></script>
+
+    <script>
+        $(".js-example-tags").select2({
+            tags: true
+            
+        });
+
+       
+    </script>
+    <!-- Bootstrap Core Js -->
+    <script src="{% static 'accounts/plugins/bootstrap/js/bootstrap.js' %}"></script>
+
+    <!-- Select Plugin Js -->
+    <script src="{% static 'accounts/plugins/bootstrap-select/js/bootstrap-select.js' %}"></script>
+
+    <!-- Slimscroll Plugin Js -->
+    <script src="{% static 'accounts/plugins/jquery-slimscroll/jquery.slimscroll.js' %}"></script>
+
+    <!-- Waves Effect Plugin Js -->
+    <script src="{% static 'accounts/plugins/node-waves/waves.js' %}"></script>
+
+    <!-- Jquery CountTo Plugin Js -->
+    <script src="{% static 'accounts/plugins/jquery-countto/jquery.countTo.js' %}"></script>
+
+    <!-- Morris Plugin Js -->
+    <script src="{% static 'accounts/plugins/raphael/raphael.min.js' %}"></script>
+    <script src="{% static 'accounts/plugins/morrisjs/morris.js' %}"></script>
+
+    <!-- ChartJs -->
+    <script src="{% static 'accounts/plugins/chartjs/Chart.bundle.js' %}"></script>
+
+    <!-- Flot Charts Plugin Js -->
+    <script src="{% static 'accounts/plugins/flot-charts/jquery.flot.js' %}"></script>
+    <script src="{% static 'accounts/plugins/flot-charts/jquery.flot.resize.js' %}"></script>
+    <script src="{% static 'accounts/plugins/flot-charts/jquery.flot.pie.js' %}"></script>
+    <script src="{% static 'accounts/plugins/flot-charts/jquery.flot.categories.js' %}"></script>
+    <script src="{% static 'accounts/plugins/flot-charts/jquery.flot.time.js' %}"></script>
+
+    <!-- Sparkline Chart Plugin Js -->
+    <script src="{% static 'accounts/plugins/jquery-sparkline/jquery.sparkline.js' %}"></script>
+
+    <!-- Custom Js -->
+    <script src="{% static 'accounts/js/admin.js' %}"></script>
+    {% block script %}
+
+    {% endblock script %}
+    <!-- <script src="js/pages/index.js' %}"></script> -->
+    <script>
+        function populate(s1, s2) {
+            var s1 = document.getElementById(s1);
+            var s2 = document.getElementById(s2);
+            s2.innerHTML = "";
+            if (s1.value == "Expenses") {
+                var optionArray = ["|", "General Exp.|General Exp.", "Pre-Paid Exp.|Pre-Paid Exp.", "Cost Of Goods Sold|Cost of Goods Sold", "Purchases Return & Allowances|Purchases Return & Allowances", "Purchases/Cash discount|Purchases/Cash discount"];
+            } else if (s1.value == "Assets") {
+                var optionArray = ["|", "Cash|Cash", "Bank|Bank", "Petty Cash|Petty Cash", "Accounts Receivable|Accounts Receivable", "Fixed Asset|Fixed Asset", "Inventory|Inventory", "Other Asset|Other Asset", "Bad Dabts/Uncollectable|Bad Dabts/Uncollectable", "Depreciation|Depreciation"];
+            } else if (s1.value == "Equities") {
+                var optionArray = ["|", "OwnerEquity|OwnerEquity", "OwnerDrawing|OwnerDrawing", "RetainEarning|RetainEarning", "incomeSumMany|incomeSumMany"];
+            }
+            else if (s1.value == "Liabilities") {
+                var optionArray = ["|", "Account Payable|Account Payable", "Long Term|Long Term", "Other Liability|Other Liability"];
+
+            }
+            else if (s1.value == "Income-Revenue") {
+                var optionArray = ["|", "Sales/Fee/Commission|Sales/Fee/Commission", "Sales Return & Allowances|Sales Return & Allowances", "Sales/Cash Discount|Sales/Cash Discount", "Other Income|Other Income"];
+            }
+            for (var option in optionArray) {
+                var pair = optionArray[option].split("|");
+                var newOption = document.createElement("option");
+                newOption.value = pair[0];
+                newOption.innerHTML = pair[1];
+                s2.options.add(newOption);
+
+                console.log(newOption);
+            }
+        }
+    </script>
+
+    <!-- Demo Js -->
+    <script src="{% static 'accounts/js/demo.js' %}"></script>
+
+
+
+</body>
+
+</html>

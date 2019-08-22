@@ -1,0 +1,420 @@
+{% extends "base.html" %}
+
+
+
+
+{% block content %}
+
+<!-- Top Bar -->
+<nav class="navbar">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a href="javascript:void(0);" class="navbar-toggle collapsed" data-toggle="collapse"
+          data-target="#navbar-collapse" aria-expanded="false"></a>
+        <a href="javascript:void(0);" class="bars"></a>
+        <a class="navbar-brand" href="index.html">NHZ STORE</a>
+
+      </div>
+      <div class="collapse navbar-collapse" id="navbar-collapse">
+        <ul class="nav navbar-nav navbar-right">
+          <!-- Call Search -->
+          <!-- <li><a href="javascript:void(0);" class="js-search" data-close="true"><i class="material-icons">search</i></a></li> -->
+
+
+          <li style="text-align: center" class="pull-right"><a href="" data-close="true"><i
+                class="material-icons">people_outline</i>
+              <div>Users</div>
+            </a></li>
+
+          <li style="text-align: center" class="dropdown pull-right">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-close="true"
+              aria-haspopup="true" aria-expanded="false"><i class="material-icons">location_city</i> <span
+                class="caret"></span>
+              <div>Departments</div>
+            </a>
+
+            <ul class="dropdown-menu">
+              <li><a href="#">Action</a></li>
+              <li><a href="#">Another action</a></li>
+              <li><a href="#">Something else here</a></li>
+              <li role="separator" class="divider"></li>
+              <li><a href="#">Separated link</a></li>
+              <li role="separator" class="divider"></li>
+              <li><a href="#">One more separated link</a></li>
+            </ul>
+          </li>
+          <li style="text-align: center" class="dropdown pull-right">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-close="true"
+              aria-haspopup="true" aria-expanded="false"><i class="material-icons">device_hub</i> <span
+                class="caret"></span>
+              <div>Terminals</div>
+            </a>
+
+            <ul class="dropdown-menu">
+              <li><a href="#">Action</a></li>
+              <li><a href="#">Another action</a></li>
+              <li><a href="#">Something else here</a></li>
+              <li role="separator" class="divider"></li>
+              <li><a href="#">Separated link</a></li>
+              <li role="separator" class="divider"></li>
+              <li><a href="#">One more separated link</a></li>
+            </ul>
+          </li>
+          <li style="text-align: center" class="dropdown pull-right">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-close="true"
+              aria-haspopup="true" aria-expanded="false"><i class="material-icons">ballot</i> <span
+                class="caret"></span>
+              <div>Blocks</div>
+            </a>
+
+            <ul class="dropdown-menu">
+              <li><a href="#">Action</a></li>
+              <li><a href="#">Another action</a></li>
+              <li><a href="#">Something else here</a></li>
+              <li role="separator" class="divider"></li>
+              <li><a href="#">Separated link</a></li>
+              <li role="separator" class="divider"></li>
+              <li><a href="#">One more separated link</a></li>
+            </ul>
+          </li>
+
+          <li style="text-align: center" class="pull-right"><a href="" data-close="true"><i
+                class="material-icons">language</i>
+              <div>Regions</div>
+            </a></li>
+          <li style="text-align: center" class="pull-right"><a href="" data-close="true"><i
+                class="material-icons">book</i>
+              <div> Books</div>
+            </a></li>
+
+          <li style="text-align: center" class="dropdown pull-right">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-close="true"
+              aria-haspopup="true" aria-expanded="false"><i class="material-icons">people_outline</i> <span
+                class="caret"></span>
+              <div>Customers</div>
+            </a>
+
+            <ul class="dropdown-menu">
+              <li><a href="#">Action</a></li>
+              <li><a href="#">Another action</a></li>
+              <li><a href="#">Something else here</a></li>
+              <li role="separator" class="divider"></li>
+              <li><a href="#">Separated link</a></li>
+              <li role="separator" class="divider"></li>
+              <li><a href="#">One more separated link</a></li>
+            </ul>
+          </li>
+          <li style="text-align: center" class="dropdown pull-right">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-close="true"
+              aria-haspopup="true" aria-expanded="false"><i class="material-icons">scatter_plot</i> <span
+                class="caret"></span>
+              <div>Branches</div>
+            </a>
+
+            <ul class="dropdown-menu">
+              <li><a href="#">Action</a></li>
+              <li><a href="#">Another action</a></li>
+              <li><a href="#">Something else here</a></li>
+              <li role="separator" class="divider"></li>
+              <li><a href="#">Separated link</a></li>
+              <li role="separator" class="divider"></li>
+              <li><a href="#">One more separated link</a></li>
+            </ul>
+          </li>
+
+
+          <li style="text-align: center" class="dropdown pull-right">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-close="true"
+              aria-haspopup="true" aria-expanded="false"><i class="material-icons">directions_boat</i> <span
+                class="caret"></span>
+              <div>Trade/Projects</div>
+            </a>
+
+            <ul class="dropdown-menu">
+              <li><a href="#">Action</a></li>
+              <li><a href="#">Another action</a></li>
+              <li><a href="#">Something else here</a></li>
+              <li role="separator" class="divider"></li>
+              <li><a href="#">Separated link</a></li>
+              <li role="separator" class="divider"></li>
+              <li><a href="#">One more separated link</a></li>
+            </ul>
+          </li>
+          <li style="text-align: center" class="dropdown pull-right">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-close="true"
+              aria-haspopup="true" aria-expanded="false"><i class="material-icons">rate_review</i> <span
+                class="caret"></span>
+              <div>Periods</div>
+            </a>
+
+            <ul class="dropdown-menu">
+              <li><a href="#">Action</a></li>
+              <li><a href="#">Another action</a></li>
+              <li><a href="#">Something else here</a></li>
+              <li role="separator" class="divider"></li>
+              <li><a href="#">Separated link</a></li>
+              <li role="separator" class="divider"></li>
+              <li><a href="#">One more separated link</a></li>
+            </ul>
+          </li>
+          <li style="text-align: center" class="dropdown pull-right">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-close="true"
+              aria-haspopup="true" aria-expanded="false"><i class="material-icons">money</i> <span class="caret"></span>
+              <div>Pay role</div>
+            </a>
+
+            <ul class="dropdown-menu">
+              <li><a href="#">Action</a></li>
+              <li><a href="#">Another action</a></li>
+              <li><a href="#">Something else here</a></li>
+              <li role="separator" class="divider"></li>
+              <li><a href="#">Separated link</a></li>
+              <li role="separator" class="divider"></li>
+              <li><a href="#">One more separated link</a></li>
+            </ul>
+          </li>
+          <li style="text-align: center" class="dropdown pull-right">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-close="true"
+              aria-haspopup="true" aria-expanded="false"><i class="material-icons">inbox</i> <span class="caret"></span>
+              <div>Products</div>
+            </a>
+
+            <ul class="dropdown-menu">
+              <li><a href="#">Action</a></li>
+              <li><a href="#">Another action</a></li>
+              <li><a href="#">Something else here</a></li>
+              <li role="separator" class="divider"></li>
+              <li><a href="#">Separated link</a></li>
+              <li role="separator" class="divider"></li>
+              <li><a href="#">One more separated link</a></li>
+            </ul>
+          </li>
+
+          <li style="text-align: center" class="pull-right "><a class="bg-orange" data-close="true"><i
+                class="material-icons">local_library</i>
+              <div>Accounts Head</div>
+            </a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <!-- #Top Bar -->
+  {% include "leftsidebar.html" %}
+  
+  <section class="content">
+    <div class="container-fluid">
+      <div class="block-header">
+        <h2>ADD / EDIT ACCOUNTS</h2>
+       
+      </div>
+      <div class="card">
+        <div class="row clearfix">
+          <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="body">
+
+
+              <div class="row">
+                <div class="col-sm-6">
+                  <div class="form-group " style="text-align: center">
+                    <b>Account's ID</b>
+                    <select class="selectpicker form-control m-t-15  " data-live-search="true">
+                      <option data-tokens="ketchup mustard">Hot Dog, Fries and a Soda</option>
+                      <option data-tokens="mustard">Burger, Shake and a Smile</option>
+                      <option data-tokens="frosting">Sugar, Spice and all things nice</option>
+                    </select>
+                  </div>
+                  <div class="form-group " style="text-align: center">
+    <b>Title of Account</b>
+    <input style="border-left: 0px;border-right:0px; border-top:0px; box-shadow: none;  " type="text" class="form-control m-t-15 " id="exampleInputEmail1" placeholder="title of accounts">
+  </div>
+                  <div class="row">
+
+                    <div class="col-sm-4">
+
+                      <div class="form-group  " style="text-align: center">
+                        <b>Account's Nature</b>
+                        <select class="selectpicker form-control m-t-15  " data-live-search="true">
+                          <option data-tokens="ketchup mustard">Hot Dog, Fries and a Soda</option>
+                          <option data-tokens="mustard">Burger, Shake and a Smile</option>
+                          <option data-tokens="frosting">Sugar, Spice and all things nice</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="col-sm-4">
+
+                      <div class="form-group  " style="text-align: center">
+                        <b>Type</b>
+                        <select class="selectpicker form-control m-t-15  " data-live-search="true">
+                          <option data-tokens="ketchup mustard">Hot Dog, Fries and a Soda</option>
+                          <option data-tokens="mustard">Burger, Shake and a Smile</option>
+                          <option data-tokens="frosting">Sugar, Spice and all things nice</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="col-sm-4">
+
+                      <div class="form-group  " style="text-align: center">
+                        <b>Status</b>
+                        <select class="selectpicker form-control m-t-15  " data-live-search="true">
+                          <option data-tokens="ketchup mustard">Hot Dog, Fries and a Soda</option>
+                          <option data-tokens="mustard">Burger, Shake and a Smile</option>
+                          <option data-tokens="frosting">Sugar, Spice and all things nice</option>
+                        </select>
+                      </div>
+                    </div>
+
+                  </div>
+                  <div class="form-group " style="text-align: center">
+                      <b>Sub Account Of</b>
+                      <select class="selectpicker form-control m-t-15  " data-live-search="true">
+                        <option data-tokens="ketchup mustard">Hot Dog, Fries and a Soda</option>
+                        <option data-tokens="mustard">Burger, Shake and a Smile</option>
+                        <option data-tokens="frosting">Sugar, Spice and all things nice</option>
+                      </select>
+                    </div>
+
+                </div>
+                <div class="col-sm-2 m-t-30 ">
+
+
+                  <a href="javascript:;" class="spin-left btn btn-secondary" data-spin="up"><i
+                      class="glyphicon glyphicon-chevron-left"></i></a>
+                  <a href="javascript:;" class="spin-right btn btn-secondary" data-spin="down"><i
+                      class="glyphicon glyphicon-chevron-right"></i></a>
+
+
+                </div>
+                <div class="col-sm-4">
+                  <div class="form-group  " style="text-align: center">
+                    <b>Trade</b>
+                    <select class="selectpicker form-control m-t-15  " data-live-search="true">
+                      <option data-tokens="ketchup mustard">Hot Dog, Fries and a Soda</option>
+                      <option data-tokens="mustard">Burger, Shake and a Smile</option>
+                      <option data-tokens="frosting">Sugar, Spice and all things nice</option>
+                    </select>
+                  </div>
+                  <div class="form-group  " style="text-align: center">
+                    <b>Project</b>
+                    <select class="selectpicker form-control m-t-15  " data-live-search="true">
+                      <option data-tokens="ketchup mustard">Hot Dog, Fries and a Soda</option>
+                      <option data-tokens="mustard">Burger, Shake and a Smile</option>
+                      <option data-tokens="frosting">Sugar, Spice and all things nice</option>
+                    </select>
+                  </div>
+                  <div class="form-group  " style="text-align: center">
+                    <b>Branch</b>
+                    <select class="selectpicker form-control m-t-15  " data-live-search="true">
+                      <option data-tokens="ketchup mustard">Hot Dog, Fries and a Soda</option>
+                      <option data-tokens="mustard">Burger, Shake and a Smile</option>
+                      <option data-tokens="frosting">Sugar, Spice and all things nice</option>
+                    </select>
+                  </div>
+                  <div class="form-group  " style="text-align: center">
+                    <b>Book</b>
+                    <select class="selectpicker form-control m-t-15  " data-live-search="true">
+                      <option data-tokens="ketchup mustard">Hot Dog, Fries and a Soda</option>
+                      <option data-tokens="mustard">Burger, Shake and a Smile</option>
+                      <option data-tokens="frosting">Sugar, Spice and all things nice</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+
+
+
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+   
+            <div class="row clearfix">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="card">
+                        
+                        <div class="body">
+                            <div class="table-responsive">
+                                <table class="table table-bordered table-striped table-hover dataTable js-exportable">
+                                    <thead>
+                                        <tr>
+                                            <th>Account's ID</th>
+                                            <th>Title of Account</th>
+                                            <th>Liabilties</th>
+                                            <th>Debit</th>
+                                            <th>Credit</th>
+                                            <th>Balance</th>
+                                            <th>Status</th>
+                                        </tr>
+                                    </thead>
+                                    <tfoot>
+                                        <tr> <th>Account's ID</th>
+                                          <th>Title of Account</th>
+                                          <th>Liabilties</th>
+                                          <th>Debit</th>
+                                          <th>Credit</th>
+                                          <th>Balance</th>
+                                          <th>Status</th>
+                                        </tr>
+                                    </tfoot>
+                                    <tbody>
+                                       
+                                        <tr>
+                                            <td>Shad Decker</td>
+                                            <td>Regional Director</td>
+                                            <td>Edinburgh</td>
+                                            <td>51</td>
+                                            <td>2008/11/13</td>
+                                            <td>$183,000</td>
+                                            <td>Active</td>
+                                        </tr>
+                                         
+                                        <tr>
+                                            <td>Shad Decker</td>
+                                            <td>Regional Director</td>
+                                            <td>Edinburgh</td>
+                                            <td>51</td>
+                                            <td>2008/11/13</td>
+                                            <td>$183,000</td>
+                                            <td>Active</td>
+                                        </tr>
+                                         
+                                        <tr>
+                                            <td>Shad Decker</td>
+                                            <td>Regional Director</td>
+                                            <td>Edinburgh</td>
+                                            <td>51</td>
+                                            <td>2008/11/13</td>
+                                            <td>$183,000</td>
+                                            <td>Active</td>
+                                        </tr>
+                                        
+                                       
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- #END# Exportable Table -->
+    
+  </section>
+  
+    
+{% endblock content %}
+    

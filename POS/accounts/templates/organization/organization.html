@@ -1,0 +1,695 @@
+{% extends "base.html" %}
+
+
+{% block style %}
+<style>
+  .form-group {
+    margin: 0;
+
+  }
+</style>
+{% endblock style %}
+
+{% block content %}
+
+<!-- Top Bar -->
+<nav class="navbar">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a href="javascript:void(0);" class="navbar-toggle collapsed" data-toggle="collapse"
+        data-target="#navbar-collapse" aria-expanded="false"></a>
+      <a href="javascript:void(0);" class="bars"></a>
+      <a class="navbar-brand" href="index.html">NHZ STORE</a>
+
+    </div>
+    <div class="collapse navbar-collapse" id="navbar-collapse">
+      <ul class="nav navbar-nav navbar-right">
+        <!-- Call Search -->
+        <!-- <li><a href="javascript:void(0);" class="js-search" data-close="true"><i class="material-icons">search</i></a></li> -->
+
+
+        <li style="text-align: center" class="pull-right"><a href="" data-close="true"><i
+              class="material-icons">people_outline</i>
+            <div>Users</div>
+          </a></li>
+
+        <li style="text-align: center" class="dropdown pull-right">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-close="true"
+            aria-haspopup="true" aria-expanded="false"><i class="material-icons">location_city</i> <span
+              class="caret"></span>
+            <div>Departments</div>
+          </a>
+
+          <ul class="dropdown-menu">
+            <li><a href="#">Action</a></li>
+            <li><a href="#">Another action</a></li>
+            <li><a href="#">Something else here</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="#">Separated link</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="#">One more separated link</a></li>
+          </ul>
+        </li>
+        <li style="text-align: center" class="dropdown pull-right">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-close="true"
+            aria-haspopup="true" aria-expanded="false"><i class="material-icons">device_hub</i> <span
+              class="caret"></span>
+            <div>Terminals</div>
+          </a>
+
+          <ul class="dropdown-menu">
+            <li><a href="#">Action</a></li>
+            <li><a href="#">Another action</a></li>
+            <li><a href="#">Something else here</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="#">Separated link</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="#">One more separated link</a></li>
+          </ul>
+        </li>
+        <li style="text-align: center" class="dropdown pull-right">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-close="true"
+            aria-haspopup="true" aria-expanded="false"><i class="material-icons">ballot</i> <span class="caret"></span>
+            <div>Blocks</div>
+          </a>
+
+          <ul class="dropdown-menu">
+            <li><a href="#">Action</a></li>
+            <li><a href="#">Another action</a></li>
+            <li><a href="#">Something else here</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="#">Separated link</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="#">One more separated link</a></li>
+          </ul>
+        </li>
+
+        <li style="text-align: center" class="pull-right"><a href="" data-close="true"><i
+              class="material-icons">language</i>
+            <div>Regions</div>
+          </a></li>
+        <li style="text-align: center" class="pull-right"><a href="" data-close="true"><i
+              class="material-icons">book</i>
+            <div> Books</div>
+          </a></li>
+
+        <li style="text-align: center" class="dropdown pull-right">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-close="true"
+            aria-haspopup="true" aria-expanded="false"><i class="material-icons">people_outline</i> <span
+              class="caret"></span>
+            <div>Customers</div>
+          </a>
+
+          <ul class="dropdown-menu">
+            <li><a href="#">Action</a></li>
+            <li><a href="#">Another action</a></li>
+            <li><a href="#">Something else here</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="#">Separated link</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="#">One more separated link</a></li>
+          </ul>
+        </li>
+        <li style="text-align: center" class="dropdown pull-right">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-close="true"
+            aria-haspopup="true" aria-expanded="false"><i class="material-icons">scatter_plot</i> <span
+              class="caret"></span>
+            <div>Branches</div>
+          </a>
+
+          <ul class="dropdown-menu">
+            <li><a href="#">Action</a></li>
+            <li><a href="#">Another action</a></li>
+            <li><a href="#">Something else here</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="#">Separated link</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="#">One more separated link</a></li>
+          </ul>
+        </li>
+
+
+        <li style="text-align: center" class="dropdown pull-right">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-close="true"
+            aria-haspopup="true" aria-expanded="false"><i class="material-icons">directions_boat</i> <span
+              class="caret"></span>
+            <div>Trade/Projects</div>
+          </a>
+
+          <ul class="dropdown-menu">
+            <li><a href="#">Action</a></li>
+            <li><a href="#">Another action</a></li>
+            <li><a href="#">Something else here</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="#">Separated link</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="#">One more separated link</a></li>
+          </ul>
+        </li>
+        <li style="text-align: center" class="dropdown pull-right">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-close="true"
+            aria-haspopup="true" aria-expanded="false"><i class="material-icons">rate_review</i> <span
+              class="caret"></span>
+            <div>Periods</div>
+          </a>
+
+          <ul class="dropdown-menu">
+            <li><a href="#">Action</a></li>
+            <li><a href="#">Another action</a></li>
+            <li><a href="#">Something else here</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="#">Separated link</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="#">One more separated link</a></li>
+          </ul>
+        </li>
+        <li style="text-align: center" class="dropdown pull-right">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-close="true"
+            aria-haspopup="true" aria-expanded="false"><i class="material-icons">money</i> <span class="caret"></span>
+            <div>Pay role</div>
+          </a>
+
+          <ul class="dropdown-menu">
+            <li><a href="#">Action</a></li>
+            <li><a href="#">Another action</a></li>
+            <li><a href="#">Something else here</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="#">Separated link</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="#">One more separated link</a></li>
+          </ul>
+        </li>
+        <li style="text-align: center" class="dropdown pull-right">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-close="true"
+            aria-haspopup="true" aria-expanded="false"><i class="material-icons">inbox</i> <span class="caret"></span>
+            <div>Products</div>
+          </a>
+
+          <ul class="dropdown-menu">
+            <li><a href="#">Product Info</a></li>
+            <li><a href="#">Assembly Items</a></li>
+            <li><a href="#">Locations</a></li>
+            <li><a href="#">Category</a></li>
+            <li><a href="#">Company</a></li>
+            <li role="separator" class="divider"></li>
+
+          </ul>
+        </li>
+
+        <li style="text-align: center" class="pull-right "><a class="bg-orange" data-close="true"><i
+              class="material-icons">local_library</i>
+            <div>Accounts Head</div>
+          </a>
+        </li>
+
+      </ul>
+    </div>
+  </div>
+</nav>
+<!-- #Top Bar -->
+{% include "leftsidebar.html" %}
+
+<section class="content">
+  <div class="container-fluid">
+    <div class="block-header">
+      <h2>ADD / EDIT ACCOUNTS</h2>
+
+      <div class="card">
+        <div class="row clearfix">
+          <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <form id="myForm">
+
+              {% csrf_token %}
+              <div class="body">
+                <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                  <div class="row clearfix">
+
+                    <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
+
+                      <div class="form-horizontal" role="form">
+                        <div class="form-group">
+                          <label style="text-align: center" for="" class="col-sm-3 control-label">Account's ID </label>
+                          <div class="col-sm-9">
+                            <select required class="form-control js-example-tags" id="account" name="Accounts">
+
+                              <option selected disabled>Choose or new Add Account</option>
+
+
+                            </select>
+
+                          </div>
+                        </div>
+
+                      </div>
+                      <div class="form-horizontal" role="form">
+                        <div class="form-group">
+                          <label style="text-align: center" for="" class="col-sm-3 control-label">Title Of
+                            Account</label>
+                          <div class="col-sm-9">
+                            <input required type="text" name="titleofaccount" id="titleaccount" class="form-control"
+                              placeholder="Title Of Account">
+
+                          </div>
+                        </div>
+
+                      </div>
+
+
+
+
+                    </div>
+                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                      <a id ="prev"class="spin-left btn btn-secondary" data-spin="up"><i
+                          class="glyphicon glyphicon-chevron-left"></i></a>
+                      <a id="next" class="spin-right btn btn-secondary" data-spin="down"><i
+                          class="glyphicon glyphicon-chevron-right"></i></a>
+
+                    </div>
+                  </div>
+                  <div class="row clearfix">
+                    <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
+                      <div class="select">
+                        <b>Account's Nature </b>
+                        <select required name="accountnature" id="slct" onchange="populate(this.id,'slct2')">
+                          <option selected disabled>Choose</option>
+
+                          <option value="Expenses">Expenses</option>
+                          <option value="Assets">Assets</option>
+                          <option value="Liabilities">Liabilities</option>
+                          <option value="Equities">Equities</option>
+                          <option value="Income-Revenue">Income-Revenue</option>
+                        </select>
+                      </div>
+
+
+
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                      <div class="select form-horizontal">
+                        <b>Type </b>
+                        <select required name="type_accountnautre" id="slct2">
+                          <option selected disabled>Choose</option>
+
+                        </select>
+                      </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                      <div class="">
+                        <b>Status </b>
+                        <select class="" name="status" id="slct3">
+                          <option value="Active">Active</option>
+                          <option value="In-Active">In-Active</option>
+
+                        </select>
+
+                      </div>
+
+                    </div>
+
+
+                  </div>
+                  <div class="row clearfix">
+
+                    <div class="col-lg- col-md-9 col-sm-9 col-xs-9">
+
+
+                      <div class="form-horizontal">
+                        <div class="form-group">
+                          <label style="text-align: center" for="" class="col-sm-3 control-label">Sub Account Of</label>
+                          <div class="col-sm-9">
+                            <select class="form-control js-example-tags" id="subsccount" name="subsccount">
+                              <option selected disabled>Choose or Add SubAccount</option>
+
+
+                            </select>
+                          </div>
+                        </div>
+
+                      </div>
+
+
+
+
+                    </div>
+                  </div>
+
+
+                </div>
+
+
+
+
+
+
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                  <div class="form-horizontal">
+                    <div class="form-group ">
+                      <label for="first_name" class="col-xs-3 control-label">Trade</label>
+                      <div class="col-xs-9">
+                        <select class="form-control" name="Trade_T" id="trade_t">
+
+                          <option selected disabled>Choose</option>
+
+                          {% for Trade in Trade %}
+
+
+                          {% for Trade_Value in Trade_Value %}
+                          <option value="{{Trade_Value|cut:"(" |cut:"Decimal" |cut:")" |cut:","|cut:"'"}}">
+                            {{Trade|cut:"(" |cut:")" |cut:","|cut:"'"}}</option>
+
+                          {% endfor %}
+
+
+
+                          {% endfor %}
+                        </select>
+                      </div>
+                    </div>
+                    <div class="form-group ">
+                      <label for="first_name" class="col-xs-3 control-label">Project</label>
+                      <div class="col-xs-9">
+                        <select class="form-control" name="Project_T" id="project_t">
+                          <option selected disabled>Choose</option>
+
+                        </select>
+                      </div>
+                    </div>
+                    <div class="form-group ">
+                      <label for="first_name" class="col-xs-3 control-label">Branch</label>
+                      <div class="col-xs-9">
+                        <select class="form-control" id="branch_t" name="Branch_T">
+                          <option selected disabled>Choose</option>
+
+                        </select>
+                      </div>
+                    </div>
+                    <div class="form-group ">
+                      <label for="first_name" class="col-xs-3 control-label">Book</label>
+                      <div class="col-xs-9">
+                        <select class="form-control" name="Book_T" id="book_t">
+                          <option selected disabled>Choose</option>
+
+
+                        </select>
+                      </div>
+                    </div>
+
+                  </div>
+
+
+                </div>
+
+                <input type="submit" name="contact-submit" class="btn btn-primary" />
+            </form>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+  </div>
+
+  <div class="row clearfix">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+      <div class="card">
+
+        <div class="body">
+          <div class="table-responsive">
+            <table class="table table-bordered table-striped table-hover dataTable js-exportable">
+              <thead>
+                <tr>
+                  <th>Account's ID</th>
+                  <th>Title of Account</th>
+                  <th>Liabilties</th>
+                  <th>Debit</th>
+                  <th>Credit</th>
+                  <th>Balance</th>
+                  <th>Status</th>
+                  <th>Status</th>
+                  <th>Status</th>
+                  <th>Status</th>
+                  <th>Status</th>
+                  <th>Status</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tfoot>
+                <tr>
+                  <th>Account's ID</th>
+                  <th>Title of Account</th>
+                  <th>Liabilties</th>
+                  <th>Debit</th>
+                  <th>Credit</th>
+                  <th>Balance</th>
+                  <th>Status</th>
+                </tr>
+              </tfoot>
+              <tbody>
+
+                <tr>
+                  <td>Shad Decker</td>
+                  <td>Regional Director</td>
+                  <td>Edinburgh</td>
+                  <td>51</td>
+                  <td>2008/11/13</td>
+                  <td>$183,000</td>
+                  <td>Active</td>
+                </tr>
+
+                <tr>
+                  <td>Shad Decker</td>
+                  <td>Regional Director</td>
+                  <td>Edinburgh</td>
+                  <td>51</td>
+                  <td>2008/11/13</td>
+                  <td>$183,000</td>
+                  <td>Active</td>
+                </tr>
+
+                <tr>
+                  <td>Shad Decker</td>
+                  <td>Regional Director</td>
+                  <td>Edinburgh</td>
+                  <td>51</td>
+                  <td>2008/11/13</td>
+                  <td>$183,000</td>
+                  <td>Active</td>
+                </tr>
+
+
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- #END# Exportable Table -->
+
+
+</section>
+
+{% endblock content %}
+{% block script %}
+<!-- <script type="text/javascript">
+  $(function () {
+    // when select changes
+    $('#languageselector').on('change', function () {
+
+      // create data from form input(s)
+      let formData = $('#myForm').serialize();
+
+      // send data to your endpoint
+      $.ajax({
+        url: "{% url 'accounts:organization' %}",
+        method: 'post',
+        data: formData,
+        dataType: 'json', // we expect a json response
+        success: function (response) {
+          // whatever you want to do here. Let's console.log the response
+          console.log(response); // should show your ['success'=> $request->id]
+        }
+      });
+    });
+  });
+</script> -->
+<script type="text/javascript">
+  $(document).ready(function () {
+    $("#trade_t").change(function (e) {
+      e.preventDefault();
+      let formData = $('#myForm').serialize();
+
+      $.ajax({
+        type: 'GET',
+        url: "{% url 'accounts:organization' %}",
+        data: formData,
+        success: function (response) {
+          $select = $('#project_t');
+          fLen = response.Project.length;
+          for (i = 0; i < fLen; i++) {
+            // console.log(response.Project[i]);
+            $select.append('<option value="' + response.Project[i] + '">' + response.Project[i] + '</option>');
+
+          }
+        },
+        error: function (response) {
+          console.log(response)
+        }
+      })
+    });
+    $("#project_t").change(function (e) {
+      e.preventDefault();
+      let formData = $('#myForm').serialize();
+
+      $.ajax({
+        type: 'GET',
+        url: "{% url 'accounts:organization' %}",
+        data: formData,
+        success: function (response) {
+
+          $select = $('#branch_t');
+          fLen = response.Project.length;
+          for (i = 0; i < fLen; i++) {
+
+            $select.append('<option selected value="' + response.Branch[i] + '">' + response.Branch[i] + '</option>');
+
+          }
+
+
+
+
+
+        },
+        error: function (response) {
+          alert(response)
+        }
+      })
+    });
+    $("#branch_t").change(function (e) {
+      e.preventDefault();
+      let formData = $('#myForm').serialize();
+
+      $.ajax({
+        type: 'GET',
+        url: "{% url 'accounts:organization' %}",
+        data: formData,
+        success: function (response) {
+
+
+          $select = $('#book_t');
+          fLen = response.Book.length;
+          for (i = 0; i < fLen; i++) {
+
+            $select.append('<option  value="' + response.Book[i] + '">' + response.Book[i] + '</option>');
+
+          }
+
+
+
+
+
+        },
+        error: function (response) {
+          alert(response)
+        }
+      })
+
+    });
+    $("#book_t").change(function (e) {
+      e.preventDefault();
+      let formData = $('#myForm').serialize();
+
+      $.ajax({
+        type: 'GET',
+        url: "{% url 'accounts:organization' %}",
+        data: formData,
+        success: function (response) {
+
+
+          $select = $("#account");
+
+
+          if (typeof response.Account_ids !== 'undefined' && response.Account_ids.length > 0) {
+            fLen = response.Account_ids.length;
+            for (i = 0; i < fLen; i++) {
+
+
+              $select.append('<option  value="' + response.Account_ids[i] + '">' + response.Account_ids[i] + '</option>');
+
+              $subsccount = $("#subsccount")
+              $subsccount.append('<option  value="' + response.Account_ids[i] + '">' + response.Account_ids[i] + '</option>');
+
+
+
+            }
+
+            // the array is defined and has at least one element
+          }
+
+
+
+
+
+
+
+        },
+        error: function (response) {
+          console.log(response)
+        }
+      })
+    });
+    $("#myForm").submit(function (e) {
+      e.preventDefault();
+
+      var serializedData = $(this).serialize();
+      $.ajax({
+        type: 'POST',
+        url: "{% url 'accounts:organization' %}",
+        data: serializedData,
+        beforeSend: function () {
+
+        },
+        success: function (response) {
+          $('#account').val(null).trigger("change")
+
+          $('input[name=titleofaccount').val('');
+
+
+
+          console.log(response);
+          alert(response.message)
+
+        },
+        error: function (response) {
+          console.log(response)
+        }
+      })
+    })
+    $("#account").change(function (e) {
+      e.preventDefault();
+      let formData = $('#myForm').serialize();
+
+      $.ajax({
+        type: 'GET',
+        url: "{% url 'accounts:accoundFind' %}",
+        data: formData,
+        success: function (response) {
+          $('input[name=titleofaccount').val(response.Account_Find[0][0]);
+          $('#slct').append('<option selected value="' + response.Account_Find[0][1] + '">' + response.Account_Find[0][1] + '</option>');
+          $('#slct2').append('<option selected value="' + response.Account_Find[0][2] + '">' + response.Account_Find[0][2] + '</option>');
+          $('#slct3').append('<option selected value="' + response.Account_Find[0][3] + '">' + response.Account_Find[0][3] + '</option>');
+          $('#subsccount').append('<option selected value="' + response.Account_Find[0][4] + '">' + response.Account_Find[0][4] + '</option>');
+
+        },
+        error: function (response) {
+          console.log(response)
+        }
+      })
+    });
+
+  })
+ 
+</script>
+
+{% endblock script %}
