@@ -269,15 +269,22 @@
 
                                             </select>
                                             <label for="">Type</label>
-                                            <select style="width:100px" required name="type_accountnautre" id="slct2">
+                                            <select style="width:100px" required name="type" id="slct2">
 
                                                 <option selected disabled>Choose</option>
+                                                <option  value="Goods">Goods</option>
+                                                <option  value="Services" >Services</option>
+                                                <option value="AssemblyItem">AssemblyItem</option>
+                                                <option value="RM/Supplies">RM/Supplies</option>
 
                                             </select>
                                             <label for="">Valuation</label>
-                                            <select style="width:60px" required name="type_accountnautre" id="slct2">
+                                            <select style="width:60px" required name="Valuation" id="slct2">
 
                                                 <option selected disabled>Choose</option>
+                                                <option  value="AVCO">AVCO</option>
+                                                <option  value="FIFO" >FIFO</option>
+                                                <option value="LIFO">LIFO</option>
 
                                             </select>
                                             <label for="">Scheme</label>
@@ -379,14 +386,20 @@
                                         </div>
                                         <div class="form-group form-inline padding-0" style="margin-top:20px; ">
                                             <label for="exampleInputEmail1">Inventory A/C</label>
-                                            <input type="text" style="width:230px" class="form-control" name="oldprice"
-                                                id="oldprice" placeholder="Inventory A/C">
+                                            <select class="form-control" id="Inventory" name="InventoryAC">
+                                                    <option selected disabled>Choose</option>
+    
+                                                </select>
                                             <label for="exampleInputEmail1">Sale A/C</label>
-                                            <input type="text" style="width:240px" class="form-control" name="R.O.Level"
-                                                id="R.O.Level" placeholder="Sale A/C">
+                                            <select class="form-control" id="saleAC" name="SALE_AC">
+                                                    <option selected disabled>Choose</option>
+    
+                                                </select>
                                             <label for="exampleInputEmail1">COGS A/C</label>
-                                            <input type="text" style="width:240px" class="form-control" name="oldprice"
-                                                id="oldprice" placeholder="COGS A/C">
+                                            <select class="form-control" id="cogac" name="COG_AC">
+                                                    <option selected disabled>Choose</option>
+    
+                                                </select>
 
 
 
@@ -527,6 +540,48 @@
                 }
             })
         });
+        $("#branch_t").change(function (e) {
+      e.preventDefault();
+      let formData = $('#myForm').serialize();
+
+      $.ajax({
+        type: 'GET',
+        url: "{% url 'accounts:Account_List_By_Type' %}",
+        data: formData,
+        success: function (response) {
+            
+
+          $select = $('#Inventory');
+          
+          fLen = response.Inventory.length;
+          for (i = 0; i < fLen; i++) {
+
+            $select.append('<option  value="' + response.Inventory[i] + '">' + response.Inventory[i] + '</option>');
+
+          }
+          fLen = response.SaleAC.length;
+          for (i = 0; i < fLen; i++) {
+
+            $('#saleAC').append('<option  value="' + response.SaleAC[i] + '">' + response.SaleAC[i] + '</option>');
+
+          }
+
+          fLen = response.COGSAC.length;
+          for (i = 0; i < fLen; i++) {
+
+            $('#cogac').append('<option  value="' + response.COGSAC[i] + '">' + response.COGSAC[i] + '</option>');
+
+          }
+
+
+
+        },
+        error: function (response) {
+          alert(response)
+        }
+      })
+
+    });
 
     })
 </script>

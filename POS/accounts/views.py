@@ -144,6 +144,7 @@ def organization(request):
 
 def Product_Info(request):
     cursor = connections["form1_db"].cursor()
+    inventorydb = connections["inventory"].cursor()
     Trade=[]
     Trade_Value=[]
     cursor.execute("CALL `accounts`.`Trade_Code_`()")
@@ -154,12 +155,17 @@ def Product_Info(request):
     cursor.execute("select `trades`.`Trade_Code` from trades;")
     for trade in cursor.fetchall():
         Trade_Value.append(trade) 
-
-
+    
+    Category=[]
+    
+    inventorydb.execute("CALL `inventory`.`Find_Category`()")
+    for cat in cursor.fetchall():
+        Category.append(cat)
+    print(Category,'CAt')
     context = {
-       
         'Trade':Trade,
         'Trade_Value':Trade_Value,
+        'Category':Category
       
         
         
@@ -221,5 +227,35 @@ def ProjectCodeFind(request):
             for project in cursor.fetchall():
                 Branch.append(project)  
         return JsonResponse({"Project":Project,"Branch":Branch,"success":True}, status=200)
+    return JsonResponse({"success":False}, status=400)
+
+def Account_List_By_Type(request):
+    if request.method == "GET" and request.is_ajax():
+        cursor = connections["form1_db"].cursor()
+        Trade_T= request.GET.get("Trade_T")
+        Project_T= request.GET.get("Project_T")
+        Branch_T= request.GET.get("Branch_T")
+        Inventory=[]
+        SaleAC = []
+        COGSAC = []
+
+        if Trade_T is not None and  Project_T is not None and Branch_T is not None:
+            pString , pCode= Project_T.split('::')
+            bString , bCode= Branch_T.split('::')
+           
+            cursor.execute("CALL `accounts`.`Account_List_By_Type`('{}','{}','{}','INV' )".format(Trade_T,pCode,bCode))
+            for inv in cursor.fetchall():
+                Inventory.append(inv)
+            cursor.execute("CALL `accounts`.`Account_List_By_Type`('{}','{}','{}','SFR' )".format(Trade_T,pCode,bCode))
+            for sale in cursor.fetchall():
+                SaleAC.append(sale)      
+            cursor.execute("CALL `accounts`.`Account_List_By_Type`('{}','{}','{}','COG' )".format(Trade_T,pCode,bCode))
+            for COG in cursor.fetchall():
+                COGSAC.append(COG) 
+
+        
+        
+        
+        return JsonResponse({"Inventory":Inventory,"SaleAC":SaleAC,"COGSAC":COGSAC,"success":True}, status=200)
     return JsonResponse({"success":False}, status=400)
 

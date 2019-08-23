@@ -100,6 +100,17 @@ DATABASES = {
                 'autocommit': True,
         },
     },
+     'inventory': {
+        'NAME': 'inventory',
+        'ENGINE': 'django.db.backends.mysql',
+        'HOSTNAME': '127.0.0.1',
+        'USER': 'root',
+        'PASSWORD': 'root',
+        'PORT': '3306',
+        'OPTIONS': {
+                'autocommit': True,
+        },
+    },
 }
 
 DATABASE_ROUTERS = ['accounts.routers.App1Router','genprocandfunctions.routers.genprocandfunctionsRouter',]
