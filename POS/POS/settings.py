@@ -39,7 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'genprocandfunctions',
     'accounts',
-    'sesion'
+    'Products'
 ]
 
 MIDDLEWARE = [
@@ -113,9 +113,8 @@ DATABASES = {
     },
 }
 
-DATABASE_ROUTERS = ['accounts.routers.App1Router','genprocandfunctions.routers.genprocandfunctionsRouter',]
-DATABASE_APPS_MAPPING = {'genprocandfunctions': 'genprocandfunctions',
-                        }
+DATABASE_ROUTERS = ['accounts.routers.App1Router','genprocandfunctions.routers.genprocandfunctionsRouter','Products.routers.ProductsRouter']
+DATABASE_APPS_MAPPING = {'genprocandfunctions': 'genprocandfunctions','Products':'Products'}
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators
 

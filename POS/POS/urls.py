@@ -22,7 +22,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('',include('genprocandfunctions.urls',namespace='genprocandfunctions')),
     path('',include('accounts.urls',namespace='accounts')),
-    path('ses/',include('sesion.urls',namespace='sesion'))
+    path('pro/',include('Products.urls',namespace='Products'))
 ]
 
 urlpatterns += static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)

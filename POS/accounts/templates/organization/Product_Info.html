@@ -242,6 +242,7 @@
                     </div>
                     <div class="body">
                         <form id="myForm">
+                            {% csrf_token %}
                             <div class="row clearfix">
                                 <div class="row clearfix">
                                     <div class="col-md-5">
@@ -249,7 +250,7 @@
                                         <div class="form-group form-inline padding-0">
                                             <label for="exampleInputEmail1">Product's ID</label>
 
-                                            <input type="text" style="width:250px" class="form-control" name="ProductID"
+                                            <input type="text" style="width:250px" class="form-control" name="ProductCode"
                                                 id="ProductC" placeholder="Product ID">
                                             <i class="glyphicon glyphicon-chevron-left btn btn-secondary"></i>
                                             <i class="glyphicon glyphicon-chevron-right btn btn-secondary"></i>
@@ -263,9 +264,17 @@
 
                                         <div class=" form-group form-line">
                                             <label for="">Category</label>
-                                            <select style="width:100px" required name="type_accountnautre" id="slct2">
-
+                                            <select style="width:100px" required name="Category" id="slct2">
                                                 <option selected disabled>Choose</option>
+                                                {% for Category in Category %}
+
+                                                
+                                                
+                                                <option
+                                                    value="{{Category|cut:"(" |cut:")" |cut:","|cut:"'"}}">
+                                                    {{Category|cut:"(" |cut:")" |cut:","|cut:"'"}}</option>
+
+                                                {% endfor %}
 
                                             </select>
                                             <label for="">Type</label>
@@ -288,15 +297,16 @@
 
                                             </select>
                                             <label for="">Scheme</label>
-                                            <select style="width:90px" required name="type_accountnautre" id="slct2">
+                                            <select style="width:90px" required name="Scheme" id="slct2">
 
                                                 <option selected disabled>Choose</option>
 
                                             </select>
                                             <label for="">Active</label>
-                                            <select style="width:50px" required name="type_accountnautre" id="slct2">
+                                            <select style="width:50px" required name="Active" id="slct2">
 
-                                                <option selected disabled>Choose</option>
+                                                    <option value="Active">Active</option>
+                                                    <option value="In-Active">In-Active</option>
 
                                             </select>
                                         </div>
@@ -313,49 +323,49 @@
                                         <div class="form-group form-inline padding-0">
                                             <label for="exampleInputEmail1">Product Title</label>
 
-                                            <input type="text" style="width:150px" class="form-control" name="Product"
+                                            <input type="text" style="width:150px" class="form-control" name="Product_Title"
                                                 id="ProductC" placeholder="Product Title">
                                             <i class=" btn btn-secondary">Add</i>
                                             <i class=" btn btn-secondary">Del</i>
 
                                             <label for="">O/I Unit</label>
-                                            <input class="form-control" style="width:40px" type="text">
+                                            <input class="form-control" style="width:40px" name="OIUNIT" type="text">
                                             <label for="">/</label>
-                                            <input class="form-control" style="width:40px" type="text">
+                                            <input class="form-control" style="width:40px" name="innerUnit"type="text">
 
                                             <label for="">Packing</label>
-                                            <input class="form-control" style="width:80px" type="text">
+                                            <input class="form-control" style="width:80px" name="Packing"type="text">
                                             <label for="">Sal.Disc.%</label>
-                                            <input class="form-control" style="width:40px" type="text">
+                                            <input class="form-control" style="width:40px" name="SalDisc"type="text">
                                             <label for="">Pur.Disc.%</label>
-                                            <input class="form-control" style="width:40px" type="text">
+                                            <input class="form-control" style="width:40px" name="PurDisc" type="text">
                                             <label for="">Comm.%</label>
-                                            <input class="form-control" style="width:40px" type="text">
-
-
-
-
+                                            <input class="form-control" style="width:40px" name="Comm"type="text">
                                         </div>
                                         <div class="form-group form-inline padding-0" style="margin-top:20px;">
 
 
                                             <label for="">Trade Price</label>
-                                            <input class="form-control" style="width:60px" type="text">
+                                            <input class="form-control" style="width:60px" name="TradePrice" type="text">
                                             <label for="">PR.%</label>
-                                            <input class="form-control" style="width:40px" type="text">
+                                            <input class="form-control" style="width:40px" name="PR" type="text">
 
                                             <label for="">Sal Price</label>
-                                            <input class="form-control" style="width:60px" type="text">
+                                            <input class="form-control" style="width:60px" name="SalPrice" type="text">
                                             <label for="">DST Price</label>
-                                            <input class="form-control" style="width:40px" type="text">
+                                            <input class="form-control" style="width:40px" name="DSTPrice" type="text">
                                             <label for="">WS Price</label>
-                                            <input class="form-control" style="width:40px" type="text">
+                                            <input class="form-control" style="width:40px" name="WSPrice" type="text">
                                             <label for="">Company</label>
-                                            <input class="form-control" style="width:140px" type="text"
-                                                placeholder="Company">
+                                            <select class="form-control" style="width:140px" name="Company" >
+                                                    <option selected disabled>Choose</option>
+                                            </select>
+                                               
                                             <label for="">Vendor</label>
-                                            <input class="form-control" style="width:140px" type="text"
-                                                placeholder="Vendor">
+                                            <select class="form-control" style="width:140px" name="Vendor">
+                                                    <option selected disabled>Choose</option>
+                                            </select>
+
 
 
 
@@ -368,16 +378,16 @@
                                             <input type="text" style="width:150px" class="form-control" name="oldprice"
                                                 id="oldprice" placeholder="Old Price">
                                             <label for="exampleInputEmail1">R.O.Level</label>
-                                            <input type="text" style="width:140px" class="form-control" name="R.O.Level"
+                                            <input type="text" style="width:140px" class="form-control" name="ROLevel"
                                                 id="R.O.Level" placeholder="R.O.Level">
                                             <label for="exampleInputEmail1">Outer In Of</label>
-                                            <input type="text" style="width:140px" class="form-control" name="oldprice"
+                                            <input type="text" style="width:140px" class="form-control" name="OuterInOf"
                                                 id="oldprice" placeholder="Outer In Of">
                                             <label for="exampleInputEmail1">Inner Of</label>
-                                            <input type="text" style="width:100px" class="form-control" name="oldprice"
+                                            <input type="text" style="width:100px" class="form-control" name="Innerof"
                                                 id="oldprice" placeholder="Inner Of">
                                             <label for="exampleInputEmail1">Shelf</label>
-                                            <input type="text" style="width:100px" class="form-control" name="oldprice"
+                                            <input type="text" style="width:100px" class="form-control" name="Shelf"
                                                 id="oldprice" placeholder="Shelf">
 
 
@@ -400,6 +410,12 @@
                                                     <option selected disabled>Choose</option>
     
                                                 </select>
+                                                <label for="exampleInputEmail1">Location Code</label>
+                                                <select class="form-control" id="" name="LocCode">
+                                                    <option selected disabled>Choose</option>
+                                                    <option value="loc::1">loc::1</option>
+    
+                                                </select>
 
 
 
@@ -409,7 +425,10 @@
                                     </div>
                                     <div class="col-md-2 padding-0">
                                         <img id="blah" class="prodImg" src="http://placehold.it/180" alt="your image" />
-                                        <input type='file' onchange="readURL(this);" />
+                                        <input type='file' name="IMAGE" onchange="readURL(this);" />
+                                        
+                                        
+                                        
                                     </div>
                                 </div>
                             </div>
@@ -428,7 +447,7 @@
 
                                                 {% for Trade_Value in Trade_Value %}
                                                 <option
-                                                    value="{{Trade_Value|cut:"(" |cut:"Decimal" |cut:")" |cut:","|cut:"'"}}">
+                                                    value="{{Trade|cut:"(" |cut:")" |cut:","|cut:"'"}}">
                                                     {{Trade|cut:"(" |cut:")" |cut:","|cut:"'"}}</option>
 
                                                 {% endfor %}
@@ -447,9 +466,10 @@
 
                                             </select>
                                         </div>
+                                        
                                     </div>
                                     <div class="col-md-4">
-
+                                        <input type="submit" name="contact-submit" class="btn btn-primary" />
                                     </div>
                                 </div>
                             </div>
@@ -462,8 +482,17 @@
 
 
                     </div>
+
                     </form>
+
                 </div>
+                <form method="POST"   enctype="multipart/form-data">
+                    {% csrf_token %}
+                        <input type='file' name="image"  />
+                        
+                        <button type="submit"value="upload File"class="btn btn-primary">Submit</button>
+                        
+                </form>
             </div>
         </div>
         <!-- #END# Multi Column -->
@@ -581,6 +610,33 @@
         }
       })
 
+    });
+    $("#myForm").submit(function (e) {
+      e.preventDefault();
+
+      var serializedData = $(this).serialize();
+      $.ajax({
+        type: 'POST',
+        url: "{% url 'Products:Product_Info' %}",
+        data: serializedData,
+        beforeSend: function () {
+
+        },
+        success: function (response) {
+        //   $('#account').val(null).trigger("change")
+
+        //   $('input[name=titleofaccount').val('');
+
+
+
+          console.log(response);
+          alert(response.message)
+
+        },
+        error: function (response) {
+          console.log(response)
+        }
+      })
     });
 
     })

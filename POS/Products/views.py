@@ -1,0 +1,152 @@
+from django.shortcuts import render, HttpResponse,redirect
+from django.db import connections ,connection
+from decimal import Decimal
+from django.http import JsonResponse
+
+from django.http import HttpRequest
+import json
+# Create your 
+
+
+def Product_Info(request):
+    cursor = connections["form1_db"].cursor()
+    inventorydb = connections["inventory"].cursor()
+    if request.method == "POST":
+        print(request.FILES['image'])
+
+    if request.method == "POST"  and request.is_ajax():
+        
+        ProductCode= request.POST.get("ProductCode")
+        Category= request.POST.get("Category")
+        PType = request.POST.get("type")
+        Valuation= request.POST.get("Valuation")
+        Scheme = request.POST.get("Scheme")
+        Active = request.POST.get("Active")
+        ProductTitle=request.POST.get("Product_Title")
+        OIUnit=request.POST.get("OIUNIT")
+        Packing=request.POST.get("Packing")
+        SalDisc = request.POST.get("SalDisc")
+        PurDisc=request.POST.get("PurDisc")
+        Comm=request.POST.get("Comm")
+        TradePrice=request.POST.get("TradePrice")
+        PR=request.POST.get("PR")
+        SalPrice=request.POST.get("SalPrice")
+        DSTPrice=request.POST.get("DSTPrice")
+        WSPrice=request.POST.get("WSPrice")
+        Company=request.POST.get("Company")
+        Vendor=request.POST.get("Vendor")
+        oldprice=request.POST.get("oldprice")
+        ROLevel = request.POST.get("ROLevel")
+        OuterInOf =request.POST.get("OuterInOf")
+        Innerof=request.POST.get("Innerof")
+        Shelf=request.POST.get("Shelf")
+        InventoryAC=request.POST.get("InventoryAC")
+        SALE_AC=request.POST.get("SALE_AC") 
+        COG_AC=request.POST.get("COG_AC")
+        IMAGE=request.POST.get('IMAGE')
+        Trade_T= request.POST.get("Trade_T")
+        Project_T=request.POST.get("Project_T")
+        Branch_T=request.POST.get("Branch_T")
+        LocCode=request.POST.get("LocCode")
+        innerUnit =request.POST.get("innerUnit")
+    
+       
+        if Scheme is None :
+            Scheme = 'Null'
+        if OIUnit == '':
+            OIUnit = 'Null'
+        if innerUnit == '':
+            innerUnit ='Null'
+        if Packing == '':
+            Packing ='Null'
+        if SalDisc == '':
+            SalDisc ='Null'
+        if PurDisc == '':
+            PurDisc ='Null'
+        if  Comm == '' :
+            Comm='Null'
+        if DSTPrice == '':
+            DSTPrice="Null"
+        if WSPrice == '':
+            WSPrice='Null'  
+        if oldprice == '' :
+           oldprice='Null'
+        if ROLevel == '' :
+            ROLevel="Null"
+        if OuterInOf == '':
+            OuterInOf='Null' 
+        if Innerof == '':
+            Innerof='Null'
+        if Shelf == '' :
+            Shelf="Null"   
+        CompCode = None
+        if Company is None:
+            CompCode='Null'
+            
+        else:
+            Compstring, CompCode=Company.split('::')
+        VendCode = None
+        if Vendor is None:
+            VendCode='Null'
+            
+        else:
+            Venstring, VendCode=Vendor.split('::')
+        if IMAGE is None:
+           IMAGE='Null'
+        
+         
+        
+
+        if Trade_T is not None and Project_T is not None and Branch_T is not None and  Category is not None:
+            TString , TCode= Trade_T.split('::')
+            PString , PCode= Project_T.split('::')
+            BString , BCode= Branch_T.split('::')
+            CString , CCode=Category.split('::')
+            InvString , InvCode= InventoryAC.split('::')
+            SACString , SACCode= SALE_AC.split('::')
+            CogString , CogCode= COG_AC.split('::')
+            Locstring,LoCode=LocCode.split('::')
+            message=None
+            # print(TCode,PCode,BCode,ProductCode,CCode,PType,Valuation,Shelf,Active,IMAGE,ProductTitle,
+            # OIUnit,innerUnit,Packing,SalDisc,PurDisc,Comm,TradePrice,PR,SalPrice,DSTPrice,
+            # WSPrice,VendCode,oldprice,ROLevel,OuterInOf,Innerof,TString,InvCode,
+            # SACCode,CogCode,LoCode,CompCode,Scheme)
+
+            inventorydb.execute("CALL `inventory`.`ProductAdd`(@ReturnMessage,{},{},{},{},{},'{}','{}',{},'{}',{},'{}',{},{},'{}',{},{},{},{},{},{},{},{},{},'{}',{},{},{},'{}',{},{},{},{},{},{})".format(TCode,PCode,BCode,ProductCode,CCode,PType,Valuation,Shelf,Active,IMAGE,ProductTitle,OIUnit,innerUnit,Packing,SalDisc,PurDisc,Comm,TradePrice,PR,SalPrice,DSTPrice,WSPrice,VendCode,oldprice,ROLevel,OuterInOf,Innerof,TString,InvCode,SACCode,CogCode,LoCode,CompCode,Scheme))
+            inventorydb.execute("SELECT @ReturnMessage")
+            for retu in inventorydb.fetchone():
+                message=retu
+                print(message)
+            return JsonResponse({"message":message,"success":True},status=200)
+        return JsonResponse({"success":False}, status=400) 
+
+    Trade=[]
+    Trade_Value=[]
+    cursor.execute("CALL `accounts`.`Trade_Code_`()")
+    for trade in cursor.fetchall():
+        Trade.append(trade)
+    
+       
+    cursor.execute("select `trades`.`Trade_Code` from trades;")
+    for trade in cursor.fetchall():
+        Trade_Value.append(trade) 
+    
+    Category=[]
+    
+    inventorydb.execute("CALL `inventory`.`Find_Category`()")
+    for cat in inventorydb.fetchall():
+        Category.append(cat)
+    
+
+    context = {
+        'Trade':Trade,
+        'Trade_Value':Trade_Value,
+        'Category':Category
+      
+        
+        
+    }
+
+
+    return render(request , 'organization/Product_Info.html', context)
+

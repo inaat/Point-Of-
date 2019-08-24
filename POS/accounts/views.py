@@ -142,39 +142,6 @@ def organization(request):
 
     return render(request , 'organization/organization.html', context )
 
-def Product_Info(request):
-    cursor = connections["form1_db"].cursor()
-    inventorydb = connections["inventory"].cursor()
-    Trade=[]
-    Trade_Value=[]
-    cursor.execute("CALL `accounts`.`Trade_Code_`()")
-    for trade in cursor.fetchall():
-        Trade.append(trade)
-    
-       
-    cursor.execute("select `trades`.`Trade_Code` from trades;")
-    for trade in cursor.fetchall():
-        Trade_Value.append(trade) 
-    
-    Category=[]
-    
-    inventorydb.execute("CALL `inventory`.`Find_Category`()")
-    for cat in cursor.fetchall():
-        Category.append(cat)
-    print(Category,'CAt')
-    context = {
-        'Trade':Trade,
-        'Trade_Value':Trade_Value,
-        'Category':Category
-      
-        
-        
-    }
-
-
-    return render(request , 'organization/Product_Info.html', context)
-
-
 
 def AccoundFind(request):
     if request.method == "GET" and request.is_ajax():
@@ -213,12 +180,14 @@ def ProjectCodeFind(request):
     if request.method == "GET" and request.is_ajax():
         cursor = connections["form1_db"].cursor()
         Trade_T= request.GET.get("Trade_T")
+        print(Trade_T)
         Project_T= request.GET.get("Project_T")
         Project=[]
         Branch=[]
+        TString , TCode= Trade_T.split('::')
         
-        
-        cursor.execute("CALL `accounts`.`Project_Code_`('{}' )".format(Trade_T))
+        print(TCode)
+        cursor.execute("CALL `accounts`.`Project_Code_`('{}' )".format(TCode))
         for project in cursor.fetchall():
             Project.append(project) 
         if Project_T is not None:
@@ -242,14 +211,15 @@ def Account_List_By_Type(request):
         if Trade_T is not None and  Project_T is not None and Branch_T is not None:
             pString , pCode= Project_T.split('::')
             bString , bCode= Branch_T.split('::')
+            TString , TCode= Trade_T.split('::')
            
-            cursor.execute("CALL `accounts`.`Account_List_By_Type`('{}','{}','{}','INV' )".format(Trade_T,pCode,bCode))
+            cursor.execute("CALL `accounts`.`Account_List_By_Type`('{}','{}','{}','INV' )".format(TCode,pCode,bCode))
             for inv in cursor.fetchall():
                 Inventory.append(inv)
-            cursor.execute("CALL `accounts`.`Account_List_By_Type`('{}','{}','{}','SFR' )".format(Trade_T,pCode,bCode))
+            cursor.execute("CALL `accounts`.`Account_List_By_Type`('{}','{}','{}','SFR' )".format(TCode,pCode,bCode))
             for sale in cursor.fetchall():
                 SaleAC.append(sale)      
-            cursor.execute("CALL `accounts`.`Account_List_By_Type`('{}','{}','{}','COG' )".format(Trade_T,pCode,bCode))
+            cursor.execute("CALL `accounts`.`Account_List_By_Type`('{}','{}','{}','COG' )".format(TCode,pCode,bCode))
             for COG in cursor.fetchall():
                 COGSAC.append(COG) 
 

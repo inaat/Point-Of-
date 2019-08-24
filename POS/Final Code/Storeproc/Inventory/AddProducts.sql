@@ -2,10 +2,9 @@ DELIMITER $$
 use inventory $$
 drop  procedure if exists `ProductAdd`;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `ProductAdd`(
-Out ReturnMessage varchar(150) , 
-IN Branch numeric(4, 0), 
+Out ReturnMessage varchar(150) ,  
 IN Terminal numeric(4, 0), 
-IN User char(7), 
+IN User_ID char(7), 
 IN TradeCode numeric(2, 0), 
 IN ProjectCode numeric(4, 0), 
 IN BranchCode numeric(4, 0), 
@@ -29,7 +28,7 @@ IN SalesPrice numeric(18, 4),
 IN DSTPrice numeric(13, 4),
 IN WSPrice numeric(13, 4),
 IN VendorID numeric(19, 0),
-IN Old_Price varchar(200),
+IN OldPrice varchar(200),
 IN ReorderLevel numeric(5, 0),
 IN OinnerOf numeric(18, 0),
 IN InnerOf numeric(18, 0),
@@ -41,7 +40,7 @@ IN LocCode numeric(5, 0),
 IN CompanyCode numeric(6, 0),
 IN SchemeCode numeric(3, 0)
  )
-BEGIN
+Proc_Exit:BEGIN
 	Declare AcInAc bit;
     Declare Prev_Valation varchar(20);
     Declare Cur_Date date;
@@ -53,17 +52,20 @@ BEGIN
 		Set ProdImage = null;
 	End IF;
 	--
-    IF(Select Count(`inventory`.`Stock_Locations`.`Loc_Code` )
+    IF (Select Count(`inventory`.`Stock_Locations`.`Loc_Code` )
 		from 
 		`inventory`.`Stock_Locations` 
          where
          Branch_Code=BranchCode and Loc_Code=LocCode) = 0 then
          Set ReturnMessage = 'Location code was not found, select location code please.';
+         leave Proc_Exit;
 	End If;
 	--
-    if InventoryAcc is null or SalesAcc is null or COGSAcc is null then
+    if InventoryAc is null or SalesAc is null or COGSAc is null then
 		Begin
-			Set ReturnMessage = 'Inventory account(s) are required.';			
+			Set ReturnMessage = 'Inventory account(s) are required.';
+            leave Proc_Exit;
+			
 		End;
 	End IF;
     --
@@ -76,12 +78,14 @@ BEGIN
 		If ProdCode = 0 or ProdCode is null then
 			Begin
 			Set ReturnMessage = 'Product code must be greater than  0';
+            leave Proc_Exit;
 			End;
 		End IF;
             -- Error
             if Valuation <> 'AVCO' and (PurchasePrice is null or PurchasePrice=0) then
 			Begin
 			set ReturnMessage = 'Purchase price is required for FIFO or LIFO valuation.';
+            leave Proc_Exit;
 			End;
 			End If;
             
@@ -306,16 +310,16 @@ Else
 										        );
 										  --
 										if Cost_Price is null or Cost_Price = 0 then
-                                        -- Set Cost_Price = (Select top 1  `GetZeroForNullValue`(prd.Purchase_Price)-
-											-- (`GetZeroForNullValue`(prd.Purchase_Price)*
-											 -- `GetZeroForNullValue`(prd.Purchase_Disc_Per)/100) 
-											-- from Products prd where Prod_Code=ProCode);
+											Set Cost_Price = (Select `GetZeroForNullValue`(prd.Purchase_Price)-
+											 (`GetZeroForNullValue`(prd.Purchase_Price)*
+											 `GetZeroForNullValue`(prd.Purchase_Disc_Per)/100) 
+											from Products prd where Prod_Code=ProCode limit 1);
 											--
-										Set Last_inv = (select `GetZeroForNullValue`(max(LFInvoice_No))+1 
-                                        from Lifo_Fifo_PrQty);
-										Set Cur_Date = getdate();
-										insert `Lifo_Fifo_PrQty` (Loc_Code, Prod_Code, LFInvoice_Date, LFInvoice_No, LFOuter_Units, LFPrice)
-										Values(LocCode, ProCode, Cur_date, Last_inv, Total_Units, Cost_Price);
+											Set Last_inv = (select `GetZeroForNullValue`(max(LFInvoice_No))+1 
+											from Lifo_Fifo_PrQty);
+											Set Cur_Date = getdate();
+											insert `Lifo_Fifo_PrQty` (Loc_Code, Prod_Code, LFInvoice_Date, LFInvoice_No, LFOuter_Units, LFPrice)
+											Values(LocCode, ProCode, Cur_date, Last_inv, Total_Units, Cost_Price);
                                         End If;
                                         
                                         
@@ -357,5 +361,16 @@ Else
       End;
     End IF;
     
+			-- Delete from Location_Sub_Stock 
+			-- where
+			-- (dbo.GetZeroForNullValue(Opening_Units)+
+			-- dbo.GetZeroForNullValue(Units_Purchased)+
+			-- dbo.GetZeroForNullValue(Units_Sold_Prev)+
+			--  dbo.GetNullforZeroValue(Units_Sold))=0
+			-- and Prod_Code=@PrmID;
+			--
+			-- Delete from SubProdLinks where SubofSub=@PrmID; --and MainofsubAcc=@SubAccount 
+			-- Delete from MainSubProdLinks where Sub_Prod=@PrmID; --and MainAcc=@SubAccount 
+			-- Delete from Sub_Products where Prod_Code=@PrmID;
 	END$$
-DELIMITER ;
+DELIMITER $$
