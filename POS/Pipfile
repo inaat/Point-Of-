@@ -12,6 +12,7 @@ psycopg2 = "==2.7.4"
 pymysql = "==0.8.0"
 pytz = "==2018.3"
 django-qsessions = "*"
+pillow = "*"
 
 [requires]
 python_version = "3.7"
