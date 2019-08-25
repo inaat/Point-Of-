@@ -1,0 +1,126 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+        <!-- Favicon-->
+        <link rel="icon" href="favicon.ico" type="{% static 'accounts/image/x-icon'%}">
+
+        <!-- Google Fonts -->
+        <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet"
+            type="text/css">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type="text/css">
+    
+        <!-- live serarch box with dropdown -->
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.8/css/select2.min.css" rel="stylesheet" />
+    
+        <!-- Bootstrap Core Css -->
+        <link href="{% static 'accounts/plugins/bootstrap/css/bootstrap.css ' %}" rel="stylesheet">
+    
+        <!-- Waves Effect Css -->
+        <link href="{% static 'accounts/plugins/node-waves/waves.css'%}" rel="stylesheet" />
+    
+        <!-- Animation Css -->
+        <link href="{% static 'accounts/plugins/animate-css/animate.css'%}" rel="stylesheet" />
+    
+        <!-- Morris Chart Css-->
+        <link href="{% static 'accounts/plugins/morrisjs/morris.css'%}" rel="stylesheet" />
+    
+        <!-- Custom Css -->
+        <link href="{% static 'accounts/css/style.css'%}" rel="stylesheet">
+        {% block style %}
+        {% endblock style %}
+    
+        <!-- AdminBSB Themes. You can choose a theme from css/themes instead of get all themes -->
+        <link href="{% static 'accounts/css/themes/all-themes.css '%}" rel="stylesheet" />
+</head>
+
+<body>
+    <form id="ajaxFormImg">
+        {% csrf_token %}
+        <input type="file" name="image">
+        <button type="submit">Add</button>
+    </form>
+
+
+
+
+    <script src="{% static 'accounts/plugins/jquery/jquery.min.js' %}"></script>
+
+    <!-- live serarch box with dropdown -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.8/js/select2.min.js"></script>
+
+    <script>
+        $(".js-example-tags").select2({
+            tags: true,
+            
+            
+            
+        });
+
+       
+    </script>
+    <!-- Bootstrap Core Js -->
+    <script src="{% static 'accounts/plugins/bootstrap/js/bootstrap.js' %}"></script>
+
+    <!-- Select Plugin Js -->
+    <script src="{% static 'accounts/plugins/bootstrap-select/js/bootstrap-select.js' %}"></script>
+
+    <!-- Slimscroll Plugin Js -->
+    <script src="{% static 'accounts/plugins/jquery-slimscroll/jquery.slimscroll.js' %}"></script>
+
+    <!-- Waves Effect Plugin Js -->
+    <script src="{% static 'accounts/plugins/node-waves/waves.js' %}"></script>
+
+    <!-- Jquery CountTo Plugin Js -->
+    <script src="{% static 'accounts/plugins/jquery-countto/jquery.countTo.js' %}"></script>
+
+    <!-- Morris Plugin Js -->
+    <script src="{% static 'accounts/plugins/raphael/raphael.min.js' %}"></script>
+    <script src="{% static 'accounts/plugins/morrisjs/morris.js' %}"></script>
+
+    <!-- ChartJs -->
+    <script src="{% static 'accounts/plugins/chartjs/Chart.bundle.js' %}"></script>
+
+    <!-- Flot Charts Plugin Js -->
+    <script src="{% static 'accounts/plugins/flot-charts/jquery.flot.js' %}"></script>
+    <script src="{% static 'accounts/plugins/flot-charts/jquery.flot.resize.js' %}"></script>
+    <script src="{% static 'accounts/plugins/flot-charts/jquery.flot.pie.js' %}"></script>
+    <script src="{% static 'accounts/plugins/flot-charts/jquery.flot.categories.js' %}"></script>
+    <script src="{% static 'accounts/plugins/flot-charts/jquery.flot.time.js' %}"></script>
+
+    <!-- Sparkline Chart Plugin Js -->
+    <script src="{% static 'accounts/plugins/jquery-sparkline/jquery.sparkline.js' %}"></script>
+
+    <!-- Custom Js -->
+    <script src="{% static 'accounts/js/admin.js' %}"></script>
+    <script>
+
+$("#ajaxFormImg").submit(function (e) {
+      e.preventDefault();
+
+      var data = new FormData($('#ajaxFormImg').get(0));
+
+$.ajax({
+    url: "{% url 'Products:directupload'%}",
+    type: 'POST',
+    data: data,
+    contentType: 'multipart/form-data',
+    processData: false,
+    contentType: false,
+    success: function (data) {
+
+        alert('success');
+    }
+});
+return false;
+    });
+
+    </script>
+</body>
+
+</html>

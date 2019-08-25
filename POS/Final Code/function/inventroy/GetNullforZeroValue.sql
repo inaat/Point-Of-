@@ -15,3 +15,4 @@ BEGIN
 	Return GetValue;
 END$$
 DELIMITER ;
+select `inventory`.`GetZeroForNullValue`(null);

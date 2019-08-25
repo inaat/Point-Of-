@@ -241,7 +241,7 @@
 
                     </div>
                     <div class="body">
-                        <form id="myForm" method="POST"   enctype="multipart/form-data">
+                        <form id="myForm">
                             {% csrf_token %}
                             <div class="row clearfix">
                                 <div class="row clearfix">
@@ -425,7 +425,7 @@
                                     </div>
                                     <div class="col-md-2 padding-0">
                                         <img id="blah" class="prodImg" src="http://placehold.it/180" alt="your image" />
-                                        <input type='file' name="IMAGE" />
+                                        <input type='file' name="image" onchange="readURL(this);" />
                                         
                                         
                                         
@@ -486,13 +486,7 @@
                     </form>
 
                 </div>
-                <form method="POST"   enctype="multipart/form-data">
-                    {% csrf_token %}
-                        <input type='file' name="image"  />
-                        
-                        <button type="submit"value="upload File"class="btn btn-primary">Submit</button>
-                        
-                </form>
+     
             </div>
         </div>
         <!-- #END# Multi Column -->
@@ -614,12 +608,15 @@
     $("#myForm").submit(function (e) {
       e.preventDefault();
 
-      var serializedData = $(this).serialize();
+      var data = new FormData($('#myForm').get(0));
       $.ajax({
         type: 'POST',
         url: "{% url 'Products:Product_Info' %}",
-        data: serializedData,
-        enctype: 'multipart/form-data',
+        data: data,
+        contentType: 'multipart/form-data',
+        processData: false,
+        contentType: false,
+        data: data,
         beforeSend: function () {
 
         },

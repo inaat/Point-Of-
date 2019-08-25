@@ -6,30 +6,15 @@ from django.http import JsonResponse
 from django.http import HttpRequest
 import json
 # Create your 
-import os, sys
-def handle_uploaded_file(f):
-    destination = open('name.txt', 'wb+')
-    for chunk in f.chunks():
-        destination.write(chunk)
-    destination.close()
+import os
+import datetime
+from datetime import datetime
+from django.conf import settings
 def Product_Info(request):
     cursor = connections["form1_db"].cursor()
     inventorydb = connections["inventory"].cursor()
-    if request.method == "POST":
-        print(request.FILES['image'])
-        img = request.FILES['image']
-        user_folder = 'static/profile/'
-        img_extension = os.path.splitext(img.name)[1]
-        if not os.path.exists(user_folder):
-            os.mkdir(user_folder)
-        io='avatar' 
-        img_save_path="{},{},{}".format(user_folder,io,img_extension)
-        with open(img_save_path, 'wb+') as f:
-            for chunk in img.chunks():
-                f.write(chunk)    
-        # handle_uploaded_file(request.FILES['image'])
-        
-            
+    
+
     if request.method == "POST"  and request.is_ajax():
         
         ProductCode= request.POST.get("ProductCode")
@@ -59,14 +44,14 @@ def Product_Info(request):
         InventoryAC=request.POST.get("InventoryAC")
         SALE_AC=request.POST.get("SALE_AC") 
         COG_AC=request.POST.get("COG_AC")
-        IMAGE=request.FILES['IMAGE']
+        IMAGE=request.FILES.get('image')
         Trade_T= request.POST.get("Trade_T")
         Project_T=request.POST.get("Project_T")
         Branch_T=request.POST.get("Branch_T")
         LocCode=request.POST.get("LocCode")
         innerUnit =request.POST.get("innerUnit")
-    
-        print(IMAGE)
+        print(IMAGE,'url')
+       
         if Scheme is None :
             Scheme = 'Null'
         if OIUnit == '':
@@ -107,8 +92,7 @@ def Product_Info(request):
             
         else:
             Venstring, VendCode=Vendor.split('::')
-        if IMAGE is None:
-           IMAGE='Null'
+       
         
          
         
@@ -123,18 +107,34 @@ def Product_Info(request):
             CogString , CogCode= COG_AC.split('::')
             Locstring,LoCode=LocCode.split('::')
             message=None
-            # print(TCode,PCode,BCode,ProductCode,CCode,PType,Valuation,Shelf,Active,IMAGE,ProductTitle,
-            # OIUnit,innerUnit,Packing,SalDisc,PurDisc,Comm,TradePrice,PR,SalPrice,DSTPrice,
-            # WSPrice,VendCode,oldprice,ROLevel,OuterInOf,Innerof,TString,InvCode,
-            # SACCode,CogCode,LoCode,CompCode,Scheme)
-
-            inventorydb.execute("CALL `inventory`.`ProductAdd`(@ReturnMessage,{},{},{},{},{},'{}','{}',{},'{}',{},'{}',{},{},'{}',{},{},{},{},{},{},{},{},{},'{}',{},{},{},'{}',{},{},{},{},{},{})".format(TCode,PCode,BCode,ProductCode,CCode,PType,Valuation,Shelf,Active,IMAGE,ProductTitle,OIUnit,innerUnit,Packing,SalDisc,PurDisc,Comm,TradePrice,PR,SalPrice,DSTPrice,WSPrice,VendCode,oldprice,ROLevel,OuterInOf,Innerof,TString,InvCode,SACCode,CogCode,LoCode,CompCode,Scheme))
-            inventorydb.execute("SELECT @ReturnMessage")
-            for retu in inventorydb.fetchone():
-                message=retu
-                print(message)
-            return JsonResponse({"message":message,"success":True},status=200)
+            
+            if  IMAGE is not None:
+                img=IMAGE
+                user_folder = 'ProductImage/'
+                img_extension = os.path.splitext(img.name)[1]
+                if not os.path.exists(user_folder):
+                    os.mkdir(user_folder)
+                io=ProductTitle
+                img_save_path="{}{}{}".format(user_folder,io,img_extension)
+                
+                inventorydb.execute("CALL `inventory`.`ProductAdd`(@ReturnMessage,{},{},{},{},{},'{}','{}',{},'{}','{}','{}',{},{},'{}',{},{},{},{},{},{},{},{},{},'{}',{},{},{},'{}',{},{},{},{},{},{})".format(TCode,PCode,BCode,ProductCode,CCode,PType,Valuation,Shelf,Active,img_save_path,ProductTitle,OIUnit,innerUnit,Packing,SalDisc,PurDisc,Comm,TradePrice,PR,SalPrice,DSTPrice,WSPrice,VendCode,oldprice,ROLevel,OuterInOf,Innerof,TString,InvCode,SACCode,CogCode,LoCode,CompCode,Scheme))
+                inventorydb.execute("SELECT @ReturnMessage")
+                for retu in inventorydb.fetchone():
+                    message=retu
+            
+                with open(img_save_path, 'wb+') as f:
+                    for chunk in img.chunks():
+                        f.write(chunk)
+                return JsonResponse({"message":message,"success":True},status=200)
+            else:
+                IMAGE='Null'
+                inventorydb.execute("CALL `inventory`.`ProductAdd`(@ReturnMessage,{},{},{},{},{},'{}','{}',{},'{}',{},'{}',{},{},'{}',{},{},{},{},{},{},{},{},{},'{}',{},{},{},'{}',{},{},{},{},{},{})".format(TCode,PCode,BCode,ProductCode,CCode,PType,Valuation,Shelf,Active,IMAGE,ProductTitle,OIUnit,innerUnit,Packing,SalDisc,PurDisc,Comm,TradePrice,PR,SalPrice,DSTPrice,WSPrice,VendCode,oldprice,ROLevel,OuterInOf,Innerof,TString,InvCode,SACCode,CogCode,LoCode,CompCode,Scheme))
+                inventorydb.execute("SELECT @ReturnMessage")
+                for retu in inventorydb.fetchone():
+                    message=retu  
+                return JsonResponse({"message":message,"success":True},status=200)      
         return JsonResponse({"success":False}, status=400) 
+        
 
     Trade=[]
     Trade_Value=[]
@@ -166,3 +166,45 @@ def Product_Info(request):
 
     return render(request , 'organization/Product_Info.html', context)
 
+
+def directupload(request):
+    
+
+    # if request.method == 'POST':
+    #     if request.is_ajax():
+
+            
+    #         img = request.FILES.get('image')
+    #         print(img)
+    #         user_folder = 'ProductImage/'
+    #         img_extension = os.path.splitext(img.name)[1]
+    #         if not os.path.exists(user_folder):
+    #             os.mkdir(user_folder)
+    #         io='Inonhj' 
+    #         img_save_path="{},{},{}".format(user_folder,io,img_extension)
+    #         with open(img_save_path, 'wb+') as f:
+    #             for chunk in img.chunks():
+    #                 f.write(chunk)
+    #         # print(file)
+            
+
+            # today_folder = datetime.now().strftime("%B%d_%Y")
+
+            # # Set full path to today_folder where file will be saved
+            # path_to_img = os.path.join(settings.MEDIA_ROOT)
+            # print(path_to_img )
+            # # Check if today_folder already exists
+           
+
+            # img_path = os.path.join(path_to_img, file.name)
+
+            # # Start writing to the disk
+            # with open(img_path, 'wb+') as destination:
+
+            #     if file.multiple_chunks:  # size is over than 2.5 Mb
+            #         for chunk in file.chunks():
+            #             destination.write(chunk)
+            #     else:
+            #         destination.write(file.read())
+
+    return render(request, 'organization/avioddb.html')

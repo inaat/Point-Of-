@@ -1,10 +1,11 @@
 from django.contrib import admin
 from django.urls import path
-from .views import Product_Info
+from .views import Product_Info,directupload
 from django.conf import settings
 from django.conf.urls.static import static
 app_name = 'Products'
 urlpatterns = [
+    path('directupload/',directupload, name='directupload'),
     path('Product_Info/',Product_Info, name='Product_Info'),
    
 ]

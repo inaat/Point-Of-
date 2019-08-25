@@ -229,3 +229,47 @@ def Account_List_By_Type(request):
         return JsonResponse({"Inventory":Inventory,"SaleAC":SaleAC,"COGSAC":COGSAC,"success":True}, status=200)
     return JsonResponse({"success":False}, status=400)
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# if IMAGE is not None:
+#                 img=IMAGE
+#                 user_folder = 'ProductImage/'
+#                 img_extension = os.path.splitext(img.name)[1]
+#                 if not os.path.exists(user_folder):
+#                     os.mkdir(user_folder)
+#                 io=ProductTitle
+#                 img_save_path="{}{}{}".format(user_folder,io,img_extension)
+#                 print(img_save_path)
+#                 inventorydb.execute("CALL `inventory`.`ProductAdd`(@ReturnMessage,{},{},{},{},{},'{}','{}',{},'{}',{},'{}','{}',{},'{}','{}',{},{},{},{},{},{},{},{},'{}',{},{},{},'{}',{},{},{},{},{},{})".format(TCode,PCode,BCode,ProductCode,CCode,PType,Valuation,Shelf,Active,img_save_path,ProductTitle,OIUnit,innerUnit,Packing,SalDisc,PurDisc,Comm,TradePrice,PR,SalPrice,DSTPrice,WSPrice,VendCode,oldprice,ROLevel,OuterInOf,Innerof,TString,InvCode,SACCode,CogCode,LoCode,CompCode,Scheme))
+#                 inventorydb.execute("SELECT @ReturnMessage")
+#                 for retu in inventorydb.fetchone():
+#                     message=retu
+            
+#                 with open(img_save_path, 'wb+') as f:
+#                     for chunk in img.chunks():
+#                         f.write(chunk)
+#                 return JsonResponse({"message":message,"success":True},status=200)
+#             else:
+#                 IMAGE='Null'
+#                 inventorydb.execute("CALL `inventory`.`ProductAdd`(@ReturnMessage,{},{},{},{},{},'{}','{}',{},'{}',{},'{}',{},{},'{}',{},{},{},{},{},{},{},{},{},'{}',{},{},{},'{}',{},{},{},{},{},{})".format(TCode,PCode,BCode,ProductCode,CCode,PType,Valuation,Shelf,Active,IMAGE,ProductTitle,OIUnit,innerUnit,Packing,SalDisc,PurDisc,Comm,TradePrice,PR,SalPrice,DSTPrice,WSPrice,VendCode,oldprice,ROLevel,OuterInOf,Innerof,TString,InvCode,SACCode,CogCode,LoCode,CompCode,Scheme))
+#                 inventorydb.execute("SELECT @ReturnMessage")
+#                 for retu in inventorydb.fetchone():
+#                     message=retu  
+#                 return JsonResponse({"message":message,"success":True},status=200)      
+#         return JsonResponse({"success":False}, status=400) 
